@@ -100,6 +100,13 @@ echo str_pad($S_pad,8,"P"); */
 
 // String Compares 
 
-$S_com2 = "Parth";
+/* $S_com2 = "Parth";
 $S_com1 = "Parth Tandel";
-echo strcmp($S_com1, $S_com2);
+echo strcmp($S_com1, $S_com2); */
+
+// string local compair
+
+echo strcoll("ello World!","ello World!");
+echo "<br>";
+
+echo strcoll("Hello World!","Hello World!");
