@@ -106,7 +106,46 @@ echo strcmp($S_com1, $S_com2); */
 
 // string local compair
 
-echo strcoll("ello World!","ello World!");
-echo "<br>";
+/* $S_coll1 = "Parth TAndel";
+$S_coll2 = "Parth TAndel";
+echo strcoll($S_coll1, $S_coll2); */
 
-echo strcoll("Hello World!","Hello World!");
+// Finds the length of the initial segment not matching a mask.
+
+/* $S_cspn = "Parth Tandel";
+echo strcspn($S_cspn,"T"); */
+
+//stristr($haystack, $needle, $before_needle):- Case-insensitive search for the first occurrence of a string.
+
+/* $S_istr = "Parth Tandel";
+echo stristr($S_istr , "TANDEL"); */
+
+//strpbrk($string, $char_list):- Searches a string for any of a set of characters.
+
+/* $S_pbrk1 = "Parth Tandel";
+$S_pbrk2 = "tandel Parth";
+echo strpbrk($S_pbrk1 ,"hr");
+echo"<br>";
+echo strpbrk($S_pbrk2 ,"Pr"); */
+
+// strstr($haystack, $needle, $before_needle):- Finds the first occurrence of a string.
+
+/* $S_str = "Parth Tandel!";
+echo strstr($S_str,"th"); */
+
+//  strtr($string, $from, $to):- Translates characters or replaces substrings.
+
+/* $S_tr = "Pokth Tandel!";
+echo strtr($S_tr, "ok", "ar"); */
+
+// ucfirst($string):- Converts the first character of a string to uppercase.
+
+/* $S_ucfirst = "parth Tandel!";
+echo ucfirst($S_ucfirst); */
+
+//ucwords($string):- Converts the first character of each word in a string to uppercase.
+
+/* $S_ucwords = "parth tandel!";
+echo ucwords($S_ucwords); */
+
+?>
