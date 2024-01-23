@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Product Information Form</title>
+</head>
+
+<body>
+    <div class="box">
+        <div class="container">
+            <div class="title">Product Information</div>
+            <div class="content">
+                <form action="ccc_backend.php">
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details" for="productName">Product Name</span>
+                            <input type="text" placeholder="Enter Product Name" id="productName" name="productName" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="sku">SKU</span>
+                            <input type="text" placeholder="Enter SKU" id="sku" name="sku" required>
+                        </div>
+                        <div class="input-box-1">
+                            <span class="details" for="productType">Product Type</span>
+                            <input type="radio" id="simpleType" name="productType" value="Simple">
+                            <span for="simpleType">Simple</span> <br>
+                            <input type="radio" id="bundleType" name="productType" value="Bundle">
+                            <span for="bundleType">Bundle</span>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="category">Category</span>
+                            <select id="category" name="category" class="input-box" required>
+                                <option value="select" Enable>--Select --</option>
+                                <option value="Bar & Game Room">Bar & Game Room</option>
+                                <option value="Bedroom">Bedroom</option>
+                                <option value="Decor">Decor</option>
+                                <option value="Dining & Kitchen">Dining & Kitchen</option>
+                                <option value="Lighting">Lighting</option>
+                                <option value="Living Room">Living Room</option>
+                                <option value="Mattresses">Mattresses</option>
+                                <option value="Office">Office</option>
+                                <option value="Outdoor">Outdoor</option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="manufacturerCost">Manufacturer Cost</span>
+                            <input type="text" placeholder="Enter Manufacturer Cost" id="manufacturerCost" name="manufacturerCost" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="shippingCost">Shipping Cost </span>
+                            <input type="text" placeholder="Enter Shipping Cost" id="shippingCost" name="shippingCost" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="price">Price</span>
+                            <input type="text" placeholder="Enter Price" id="price" name="price" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="status">Status</span>
+                            <select id="status" name="status" class="input-box" required>
+                                <option value="select">--Select --</option>
+                                <option value="Enabled">Enabled</option>
+                                <option value="Disabled">Disabled</option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="createdAt">Created At</span>
+                            <input type="date" id="createdAt" name="createdAt" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="updatedAt">Updated At</span>
+                            <input type="date" id="updatedAt" name="updatedAt" required>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
