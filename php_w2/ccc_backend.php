@@ -12,6 +12,7 @@
     <div class="box">
         <div class="container">
             <?php
+
             $conn = mysqli_connect("localhost", "root", "", "ccc_practice");
 
             // Check connection
@@ -38,7 +39,7 @@
                     . " to view the updated data</h3>";
             } else {
                 echo "<h3 style='color: red;'>ERROR: Hush! Sorry $sql. "
-                    . mysqli_error($conn). "</h3>";
+                    . mysqli_error($conn) . "</h3>";
             }
 
             // Close connection
