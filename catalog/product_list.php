@@ -65,44 +65,46 @@
             border-radius: 5px;
             background: linear-gradient(135deg, #71b7e6, #9b59b6);
         }
+
         .del {
-                margin: 5px;
-                width: 80px;
-                border-radius: 5px;
-                border: none;
-                color: white;
-                background-color: red;
-                font-size: 18px;
-                font-weight: 500;
-                letter-spacing: 1px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
+            margin: 5px;
+            width: 80px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: red;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-            .del:hover {
-                transform: scale(0.99);
-                background-color: #32cd32;
-            }
+        .del:hover {
+            transform: scale(0.99);
+            background-color: #fa3c3caf;
+        }
 
-            .upd {
-                margin: 5px;
-                width: 90px;
-                border-radius: 5px;
-                border: none;
-                color: white;
-                background-color: #1e90ff;
-                font-size: 18px;
-                font-weight: 500;
-                letter-spacing: 1px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
+        .upd {
+            margin: 5px;
+            width: 90px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: #1e90ff;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-            .upd:hover {
-                transform: scale(0.99);
-                background-color: #00bfff;
-            }
-            .btn{
+        .upd:hover {
+            transform: scale(0.99);
+            background-color: #00bfff;
+        }
+
+        .btn {
             border: 1px solid black;
             border-collapse: collapse;
             align-items: center;
@@ -139,16 +141,16 @@
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr><td class = 'column'>" . $row["product_id"] . "</td><td class = 'column'>" . $row["productName"] . "</td><td class = 'column'>" . $row["sku"] . "</td><td class = 'column'>" . $row['category'] . "</td>" ?>
-                    <td align='center' class = 'btn'> <a href='product.php?product_id=<?php echo $row['product_id'] ?>'><button class='upd'>Edit</button></a> </td>
-                    <td align='center' class = 'btn'> <a href='delete.php?product_id=<?php echo $row['product_id'] ?>'><button class='del'>Delete</button></a> </td>
+                    <td align='center' class='btn'> <a href='product.php?action=edit&product_id=<?php echo $row['product_id'] ?>'><button class='upd'>Edit</button></a> </td>
+                    <td align='center' class='btn'> <a href='product.php?action=delete&product_id=<?php echo $row['product_id'] ?>'><button class='del'>Delete</button></a> </td>
                     </tr><?php
                         }
-                echo "</table> <br>";
-            } else {
-                echo "0 results";
-            }
-            $conn->close();
-            ?>
+                        echo "</table> <br>";
+                    } else {    
+                        echo "0 results";
+                    }
+                    $conn->close();
+                            ?>
         </div>
     </div>
 </body>

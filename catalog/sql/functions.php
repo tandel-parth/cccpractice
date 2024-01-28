@@ -15,16 +15,17 @@ function insert($conn, $table_name, $data)
 
     // Check for success
     if ($stmt->affected_rows > 0) {
-        echo "<h2 style='color: green;'>Data stored in the database successfully.</h2>";
+        echo "<script>alert('Data INSERT Successfully')</script>
+        <script>location. href='product_list.php'</script>";
     } else {
-        echo "<h2 style='color: red;'>ERROR: Unable to insert data into the database.</h2>";
+        echo "<h2 style='color: red;'>ERROR: Unable to INSERT data from the database.</h2>";
     }
 
     // Close statement
     $stmt->close();
 }
 
-function update($table_name, $data = [], $where = [])
+function update($conn,$table_name, $data = [], $where = [])
 {
     $columns = $whereCond = [];
     foreach ($data as $field => $vale) {
@@ -37,9 +38,23 @@ function update($table_name, $data = [], $where = [])
     $columns = implode(",", $columns);
     $whereCond = implode(" AND ", $whereCond);
 
-    echo "<h3> UPDATE {$table_name} SET {$columns} WHERE {$whereCond} </h3>";
+    // echo "<h3> UPDATE {$table_name} SET {$columns} WHERE {$whereCond} </h3>";
+    $stmt = $conn->prepare("UPDATE {$table_name} SET {$columns} WHERE {$whereCond}");
+    $stmt->execute();
+
+    // Check for success
+    if ($stmt->affected_rows > 0) {
+        echo "<script>alert('Data UPDATE Successfully')</script>
+        <script>location. href='product_list.php'</script>";
+    } else {
+        echo "<h2 style='color: red;'>ERROR: Unable to UPDATE data from the database.</h2>";
+    }
+
+    // Close statement
+    $stmt->close();
 }
 // update("ccc_product", ['productName' => 'Table', 'productType' => 'Bundle'], ['proctuctname' => '55', 'productType' => 'Simple']);
+// die();
 
 function delete($conn ,$table_name, $where = [])
 {
@@ -48,16 +63,16 @@ function delete($conn ,$table_name, $where = [])
         $whereCond[] = " `$field` = '$vale'";
     }
     $whereCond = implode(" AND ", $whereCond);
-
     // echo "<h3> DELETE FROM {$table_name} WHERE {$whereCond} </h3>";
     $stmt = $conn->prepare("DELETE FROM {$table_name} WHERE {$whereCond}");
     $stmt->execute();
 
     // Check for success
     if ($stmt->affected_rows > 0) {
-        echo "<h2 style='color: green;'>Data Deleted from the database successfully.</h2>";
+        echo "<script>alert('Data Deleted Successfully')</script>
+        <script>location. href='product_list.php'</script>";
     } else {
-        echo "<h2 style='color: red;'>ERROR: Unable to insert data into the database.</h2>";
+        echo "<h2 style='color: red;'>ERROR: Unable to Deleted data from the database.</h2>";
     }
 
     // Close statement

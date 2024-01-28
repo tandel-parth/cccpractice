@@ -65,12 +65,12 @@ form .input-box span.details {
     margin-bottom: 5px;
 }
 form .input-box-1 span.details {
-    /* display: block; */
+    display: block;
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: -10px;
 }
-.input-box-1{
-    width: 1000px;
+.input-box-1 {
+    width: 300px;
     max-width: 100%;
 }
 
