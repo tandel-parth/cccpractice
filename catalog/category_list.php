@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Information</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             background: linear-gradient(135deg, #d6b1e5, #94d4ff);
@@ -21,7 +21,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 500px;
             width: 100%;
             background-color: #fff;
             padding: 25px 30px;
@@ -45,7 +45,7 @@
             border: 1px solid black;
             border-collapse: collapse;
             padding-left: 15PX;
-            align-items: center;
+            text-align: center;
         }
 
         .container .title {
@@ -125,25 +125,18 @@
                 die("Connection failed: " . $conn->connect_error);
             }
             // fetch($conn, "ccc_product", );
-            $sql = "SELECT * FROM ccc_product ORDER BY product_id DESC LIMIT 20";
+            $sql = "SELECT * FROM ccc_category ORDER BY cat_id";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $i = 1;
                 echo ("<table>
                         <tr>
-                            <th width='100vh'>Product ID</th>
-                            <th width='200vh'>Product Name</th>
-                            <th width='100vh'>SKU</th>
-                            <th width='250vh'>Category</th>
-                            <th width='100vh'>Edit</th>
-                            <th width='100vh'>Delete</th>
+                            <th width='200vh'>Category ID</th>
+                            <th width='250vh'>Category Name</th>
                         </tr>");
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
-                    echo "<tr><td class = 'column'>" . $row["product_id"] . "</td><td class = 'column'>" . $row["productName"] . "</td><td class = 'column'>" . $row["sku"] . "</td><td class = 'column'>" . $row['category'] . "</td>" ?>
-                    <td align='center' class='btn'> <a href='product.php?action=edit&product_id=<?php echo $row['product_id'] ?>'><button class='upd'>Edit</button></a> </td>
-                    <td align='center' class='btn'> <a href='product.php?action=delete&product_id=<?php echo $row['product_id'] ?>'><button class='del'>Delete</button></a> </td>
-                    </tr><?php
+                    echo "<tr><td class = 'column'>" . $row["cat_id"] . "</td><td class = 'column'>" . $row["name"] . "</td></tr>";
                         }
                         echo "</table> <br>";
                     } else {    

@@ -15,10 +15,9 @@ function insert($conn, $table_name, $data)
 
     // Check for success
     if ($stmt->affected_rows > 0) {
-        echo "<script>alert('Data INSERT Successfully')</script>
-        <script>location. href='product_list.php'</script>";
+        return "success";
     } else {
-        echo "<h2 style='color: red;'>ERROR: Unable to INSERT data from the database.</h2>";
+        return "error";
     }
 
     // Close statement
@@ -44,10 +43,9 @@ function update($conn,$table_name, $data = [], $where = [])
 
     // Check for success
     if ($stmt->affected_rows > 0) {
-        echo "<script>alert('Data UPDATE Successfully')</script>
-        <script>location. href='product_list.php'</script>";
+        return "success";
     } else {
-        echo "<h2 style='color: red;'>ERROR: Unable to UPDATE data from the database.</h2>";
+        return "error";
     }
 
     // Close statement
@@ -69,10 +67,9 @@ function delete($conn ,$table_name, $where = [])
 
     // Check for success
     if ($stmt->affected_rows > 0) {
-        echo "<script>alert('Data Deleted Successfully')</script>
-        <script>location. href='product_list.php'</script>";
+        return "success";
     } else {
-        echo "<h2 style='color: red;'>ERROR: Unable to Deleted data from the database.</h2>";
+        return "error";
     }
 
     // Close statement

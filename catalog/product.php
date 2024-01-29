@@ -6,7 +6,13 @@ require 'sql/functions.php';
 $action = $_GET["action"];
 if (isset($_GET['product_id']) && $action == "delete") {
     $product_id = $_GET["product_id"];
-    delete($conn, "ccc_product", ['product_id' => $product_id]);
+    $del_result = delete($conn, "ccc_product", ['product_id' => $product_id]);
+    if ($del_result === "success") {
+        echo "<script>alert('Data Deleted Successfully')</script>
+        <script>location. href='product_list.php'</script>";
+    } else {
+        echo "<h2 style='color: red;'>ERROR: Unable to INSERT data into the database.</h2>";
+    }
 }
 if (isset($_GET['product_id']) && $action == "edit") {
     $product_id = $_GET["product_id"];
@@ -17,11 +23,21 @@ if (isset($_GET['product_id']) && $action == "edit") {
         $postData = $_POST['group1'];
 
         if ($product_id == $postData['product_id']) {
-            update($conn, "ccc_product", $postData, ['product_id' => $product_id]);
-            echo "<h2 style='color: green;'>Data Updated successfully.</h2>";
+            $upd_result = update($conn, "ccc_product", $postData, ['product_id' => $product_id]);
+            if ($upd_result === "success") {
+                echo "<script>alert('Data UPDATE Successfully')</script>
+        <script>location. href='product_list.php'</script>";
+            } else {
+                echo "<h2 style='color: red;'>ERROR: Unable to INSERT data into the database.</h2>";
+            }
         } else {
-            insert($conn, "ccc_product", $postData);
-            echo "<h2 style='color: green;'>Data Inserted successfully.</h2>";
+            $ins_result = insert($conn, "ccc_product", $postData);
+            if ($ins_result === "success") {
+                echo "<script>alert('Data INSERT Successfully')</script>
+        <script>location. href='product_list.php'</script>";
+            } else {
+                echo "<h2 style='color: red;'>ERROR: Unable to INSERT data into the database.</h2>";
+            }
         }
     }
 
