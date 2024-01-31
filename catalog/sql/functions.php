@@ -76,16 +76,5 @@ function delete($conn ,$table_name, $where = [])
     $stmt->close();
 }
 
-function select($table_name, $data)
-{
-    $columns = [];
-    foreach ($data as $field => $vale) {
-        $columns[] = "$field";
-        $values[] = "'$vale'";
-    }
-    $columns = implode(",", $columns);
-    // echo $columns;
-    echo "SELECT * FROM $table_name ORDER BY id DESC LIMIT 10";
-}
 // select("ccc_product",$_POST["group1"]);
 // die();

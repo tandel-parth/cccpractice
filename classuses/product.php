@@ -1,12 +1,15 @@
 <?php
 
-require 'sql/connection.php';
-require 'sql/functions.php';
+
+// require "class_methods.php";
+require "execute_fetch.php";
 // $product_id = $_GET["product_id"];
 $action = $_GET["action"];
 if (isset($_GET['product_id']) && $action == "delete") {
     $product_id = $_GET["product_id"];
-    $del_result = delete($conn, "ccc_product", ['product_id' => $product_id]);
+    $obj = new execution();
+    $query = $obj->delete("ccc_product", ["product_id" => $product_id ]);
+    $del_result = $obj->execute($conn, $query);
     if ($del_result === "success") {
         echo "<script>alert('Data Deleted Successfully')</script>
         <script>location. href='product_list.php'</script>";
@@ -21,9 +24,10 @@ if (isset($_GET['product_id']) && $action == "edit") {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $postData = $_POST['group1'];
-
+        $obj = new execution();
         if ($product_id == $postData['product_id']) {
-            $upd_result = update($conn, "ccc_product", $postData, ['product_id' => $product_id]);
+            $query = $obj->update("ccc_product", $postData, ['product_id' => $product_id]);
+            $upd_result = $obj->execute($conn, $query);
             if ($upd_result === "success") {
                 echo "<script>alert('Data UPDATE Successfully')</script>
         <script>location. href='product_list.php'</script>";
@@ -31,12 +35,12 @@ if (isset($_GET['product_id']) && $action == "edit") {
                 echo "<h2 style='color: red;'>ERROR: Unable to INSERT data into the database.</h2>";
             }
         } else {
-            $ins_result = insert($conn, "ccc_product", $postData);
-            if ($ins_result === "success") {
+            $query = $obj->insert("ccc_product", $postData);
+            $ins_result = $obj->execute($conn, $query);
+            echo $ins_result;
+            if ($ins_result == "success") {
                 echo "<script>alert('Data INSERT Successfully')</script>
         <script>location. href='product_list.php'</script>";
-            } else {
-                echo "<h2 style='color: red;'>ERROR: Unable to INSERT data into the database.</h2>";
             }
         }
     }
@@ -150,7 +154,7 @@ if (isset($_GET['product_id']) && $action == "edit") {
                                     if ($status == "") {
                                     ?>
                                         <option value="">---select---</option>
-                                        <option value="Enabled" >Enabled</option>
+                                        <option value="Enabled">Enabled</option>
                                         <option value="Disabled">Disabled</option>
                                     <?php
                                     } elseif ($status == "Enabled") {
