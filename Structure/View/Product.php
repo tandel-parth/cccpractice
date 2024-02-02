@@ -1,8 +1,39 @@
 <?php
+class Data_Object {
+    protected $_row = [];
+    public function __construct($row){
+        $this->_row = $row;
+    }
+    public function __call($name, $args) {
+        $name = substr($name, 3);
+        return isset($this->_row[$name])
+            ? $this->_row[$name]
+            : "";
+
+        print_r($name);
+        
+        echo "<br/>";
+        // print_r($args);
+    }
+}
 class View_Product
 {
+    public $newObj; 
     public function __construct()
     {
+        $obj = new Model_Request();
+        // var_dump($obj->getQueryData('id'));
+        $id = ($obj->getQueryData('id'));
+        $obj = new Lib_Sql_Query_Builder();
+        $sql = $obj->select("ccc_product", "*", ["product_id" => $id]);
+        // echo $sql;
+        $test = $obj->exec($sql);
+        // var_dump($test);
+
+        // print_r($obj->fetchAssoc($test));
+        $data = $obj->fetchData($test);
+        // var_dump($data[0]);
+        $this->newObj = new Data_Object($data[0]);
     }
 
     public function createForm()
@@ -13,7 +44,7 @@ class View_Product
                                 <div class="content">';
         $form .= '<form action="" method="POST">';
         $form .= '<div>';
-        $form .= $this->creteTextField('pdata[productName]', "Product Name: ", "", "productName");
+        $form .= $this->creteTextField('pdata[productName]', "Product Name: ", $this->newObj->getproductName(), "productName");
         $form .= '</div><br>';
 
         $form .= '<div>';

@@ -1,6 +1,6 @@
 <?php
-include "Connection.php";
-class Lib_Sql_Query_Builder extends Lib_Connection
+// include "Connection.php";
+class Lib_Sql_Query_Builder extends Lib_Sql_Query_Connection
 {
     public function __construct()
     {
@@ -70,5 +70,5 @@ class Lib_Sql_Query_Builder extends Lib_Connection
         return $query;
     }
 }
-$obj = new Lib_Sql_Query_Builder();
-echo $obj->update("ccc_product",['productName' => 'Table', 'productType' => 'Bundle'] , ['product_id' => 25]);
+// $obj = new Lib_Sql_Query_Builder();
+// echo $obj->update("ccc_product",['productName' => 'Table', 'productType' => 'Bundle'] , ['product_id' => 25]);

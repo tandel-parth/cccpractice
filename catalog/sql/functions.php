@@ -68,7 +68,7 @@ function delete($conn ,$table_name, $where = [])
     // Check for success
     if ($stmt->affected_rows > 0) {
         return "success";
-    } else {
+    } else {    
         return "error";
     }
 
