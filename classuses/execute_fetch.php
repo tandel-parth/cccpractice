@@ -23,8 +23,7 @@ class execution extends querybulder
                 echo "<p>No records found.</p>";
             }
         } else {
-            echo "<h3 style='color: red;'>ERROR: Unable to fetch data. "
-                . $conn->error . "</h3>";
+            return $conn->error;
         }
         $result->free_result();
     }
