@@ -173,16 +173,18 @@ echo (var_dump($arrayVarCast));
 echo("<br>");
 
 // Null to Array
-$nullVarCast = (array)$nullVar;
-echo var_dump($nullVarCast);
-echo("<br><br>");
+// $nullVarCast = (array)$nullVar;
+// echo var_dump($nullVarCast);
+// echo("<br><br>");
 
 // // To cast to NULL, use the () statement:
 // echo "<b>NULL Casting</b> <br>";
 // //integer to NULL
-// $integerVarCast = ()$integerVar;
+// $integerVarCast = (unset)$integerVar;
 // echo var_dump($integerVarCast);
 // echo("<br>");
+
+// echo phpinfo();
 
 // // Float to NULL
 // $floatVarCast = ()$floatVar;
