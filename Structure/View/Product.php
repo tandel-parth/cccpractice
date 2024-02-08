@@ -94,7 +94,7 @@ class View_Product{
         }
         public function creteRadioButton($name, $label, $value='',$id = '')
         {
-            return '<input type="radio" id="'.$id.'" name="'.$name.'" value="'.$label.'"'.(($value==$label)?'checked':'').'>'.$label.'';
+            return '<input type="radio" id="'.$id.'" name="'.$name.'" value="'.$label.'"'.(($value==$label)?'checked':'').'>'." ".$label.'';
         }
         public function creteSelect($name, $title, $array, $value='', $id = '')
         {
@@ -116,7 +116,7 @@ class View_Product{
             return '<input type="submit" name="submit" value="' . $title . '">';
         }
     public function toHtml(){
-        $css='<link rel="stylesheet" href="View/CSS/styles.css">';
+        $css='<link rel="stylesheet" href="..\View\CSS\stylesss.css">';
         $form=$this->createForm();
         return $css.$form;
                

@@ -3,7 +3,7 @@ class View_Product_List{
     public $rowObj;
     public function __construct(){
         $obj=new Model_Abstract();
-        $query=$obj->getQueryBuider()->select("ccc_product","*");
+        $query=$obj->getQueryBuider()->select("ccc_product","*"). " ORDER BY product_id ASC LIMIT 10";
         $result=$obj->getQueryExecutor()->exec($query);
         $rows=$obj->getQueryExecutor()->FetchAssoc($result);
         $this->rowObj=new Model_Data_Collection();
@@ -26,7 +26,7 @@ class View_Product_List{
                             <th>Product SKU</th>
                             <th>Category</th>
                             <th>Edit</th>
-                            <th>delete</th>
+                            <th>Delete</th>
                         </tr>'; 
                         foreach($this->rowObj->getData() as $data){                        
                         $table.=
@@ -46,7 +46,7 @@ class View_Product_List{
         return $table;
     }
     public function toHtml(){
-        $css='<link rel="stylesheet" href="View/CSS/styles.css">';
+        $css='<link rel="stylesheet" href="..\..\View\CSS\stylesss.css">';
         $form=$this->createTable();
         return $css.$form;
                

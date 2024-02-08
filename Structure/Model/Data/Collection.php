@@ -1,4 +1,4 @@
-<pre>
+
 <?php
 class Model_Data_Collection extends Model_Data_Object{
     protected $_data = [];

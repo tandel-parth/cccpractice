@@ -12,14 +12,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px;
+    padding: 50px;  
 }
 
 .container {
     max-width: 700px;
     width: 100%;
     background-color: #fff;
-    padding: 0px 30px;
+    padding: 20px 30px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
@@ -27,11 +27,12 @@ body {
     max-width: 900px;
     width: 100%;
     background-color: #fff;
-    padding: 0px 30px;
+    padding: 30px 30px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 .title_button{
+    padding-bottom: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,6 +42,7 @@ body {
     font-size: 25px;
     font-weight: 500;
     position: relative;
+    padding-bottom: 5px;
 }
 
 .container .title::before {
@@ -49,7 +51,7 @@ body {
     left: 0;
     bottom: 0;
     height: 3px;
-    width: 260px;
+    width: 210px;
     border-radius: 5px;
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
@@ -58,6 +60,7 @@ body {
     font-size: 25px;
     font-weight: 500;
     position: relative;
+    padding-bottom: 5px;
 }
 
 .container1 .title::before {
@@ -66,7 +69,7 @@ body {
     left: 0;
     bottom: 0;
     height: 3px;
-    width: 260px;
+    width: 210px;
     border-radius: 5px;
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
@@ -96,8 +99,9 @@ form .input-box span.details {
 }
 form .input-box-1 span.details {
     display: block;
+    font-size: 20px;
     font-weight: 500;
-    /* margin-bottom: -10px; */
+    margin-bottom: -7px;
 }
 .input-box-1 {
     width: 300px;
@@ -138,8 +142,7 @@ form .input-box-1 span.details {
     transition: all 0.3s ease;
 }
 
-.user-details .input-box input:focus,
-.user-details .input-box input:valid {
+.user-details .input-box input:focus{
     border-color: #9b59b6;
 }
 .user-details .input-box select:focus{
@@ -176,7 +179,7 @@ th {
     border: 1px solid black;
     position: relative;
     padding: 5px;
-    width: 200vh;
+    width: 100vh;
 }
 tr td{
     font-size: 16px;
@@ -185,7 +188,7 @@ tr td{
     border-collapse: collapse;
 }
 .row_data{
-    padding: 15px;
+    padding: 10px;
 }
 .view {
     margin: 5px;

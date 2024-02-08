@@ -66,3 +66,7 @@ echo "Max : "  .array_sum($temparr);
 //     quoat_/address/list
 //     quoat_/address/save
 //     quoat_/address/delete
+
+
+
+// page/ 

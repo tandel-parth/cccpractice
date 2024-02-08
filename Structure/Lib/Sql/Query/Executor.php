@@ -1,4 +1,4 @@
-<pre>
+
 <?php
 class Lib_Sql_Query_Executor extends Lib_Sql_Connection{
     public function exec($sql){

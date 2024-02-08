@@ -7,11 +7,12 @@ class Ccc{
     }
 }
 Ccc::init();
+
 // $request=new Model_Request();
 // $action=$request->getQueryData('action');
 // $id= $request->getQueryData('product_id');
 // if(!$request->isPost() && $action==null){
-//     $product=new View_ProductList();
+//     $product=new View_Product_List();
 //     echo $product->toHtml(); 
 // }
 // if($action=='add' && $id==''){
@@ -63,4 +64,4 @@ Ccc::init();
 //         echo "<script>alert('Error in data deleting')</script>";
 //     }        
 // }
-?>
+// ?>
