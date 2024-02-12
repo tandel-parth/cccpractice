@@ -7,12 +7,11 @@ class Core_Model_Request
 
     public function __construct()
     {
-        $request = $this->getRequestUrl();
-        $arr = explode("/", $request);
-        // var_dump($arr);
-        $this->_getModuleName = $arr[0];
-        $this->_getControllerName = $arr[1];
-        $this->_getActionName = $arr[2];
+        $uri = $this->getRequestUrl();
+        $arr = array_filter(explode("/", $uri));  
+        $this->_getModuleName = isset($arr[0]) ? $arr[0] : "page";
+        $this->_getControllerName = isset($arr[1]) ? $arr[1] : "index";
+        $this->_getActionName = isset($arr[2]) ? $arr[2] : "index";
 
     }
     public function getParams($key = '')

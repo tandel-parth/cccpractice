@@ -2,13 +2,9 @@
 
 class Mage
 {
+    private static $baseDir = "E:/xampp/htdocs/CyberCom/MVC"; 
     public static function init()
     {
-        // $request = new Core_Model_Request();
-        // echo $request->getRequestUrl(); 
-        // $request = Mage::getModel('core/request');
-        // return $request->getRequestUrl();
-
         $forntController = new Core_Controller_Front();
         $forntController->init();
     }
@@ -21,6 +17,12 @@ class Mage
         $className = ucwords($className,"_");
         return new $className;
     }
+    public static function getBlock($className)
+    {
+        $className = str_replace('/','_Block_', $className);
+        $className = ucwords($className,"_");
+        return new $className;
+    }
     public static function register($key, $value)
     {
     }
@@ -29,6 +31,10 @@ class Mage
     }
     public static function getBaseDir($subDir = null)
     {
+        if($subDir){
+            return self::$baseDir."/".$subDir;
+        } 
+            return self::$baseDir;
     }
 
 }
