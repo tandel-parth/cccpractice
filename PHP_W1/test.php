@@ -1,14 +1,17 @@
 <?php
+echo "<pre>";
+function fector($n){
+    $a=[];
+    echo "Fector of $n :- ";
+ for ($i = 1; $i <= $n; $i++){
+    if ($n% $i == 0){
+        array_push($a , $i);
+    }
+ }
+print_r($a);
 
-$arr = array(3,5,7,1,9);
-$temparr = $arr;
-sort($arr);
-array_pop($arr);
-echo "Min : "  .array_sum($arr);
-echo "<br>";
-rsort($temparr);
-array_pop($temparr);
-echo "Max : "  .array_sum($temparr);
+}
+fector(25);
 
 
 

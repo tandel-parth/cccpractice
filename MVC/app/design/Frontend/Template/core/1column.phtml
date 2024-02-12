@@ -151,7 +151,7 @@
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr><td class = 'column'>" . $row["product_id"] . "</td>";
                     echo "<td class = 'column'>" . $row["productName"] . "</td><td class = 'column'>" . $row["sku"] . "</td>";
-                    echo "<td class = 'column'>" . $row['category'] . "</td>";
+                    echo "<td class = 'column'>" . $row['category_id'] . "</td>";
                     echo "<td align='center' class='btn'> <a href=''><button class='upd'>Edit</button></a> </td>";
                     echo "<td align='center' class='btn'> <a href=''><button class='del'>Delete</button></a> </td></tr>";
                 }
