@@ -1,7 +1,107 @@
-<?php 
+<!DOCTYPE html>
+<html lang="en">
 
-echo $this->getRequest()->getParams('id')."<br>"; 
-$productModel = Mage::getModel('product/product');
-echo "<pre>";
-print_r($productModel->load(12));
-?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: auto;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        p {
+            color: #555;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .col-2 {
+            flex-basis: 50%;
+            min-width: 300px;
+        }
+
+        .col-2 img {
+            max-width: 100%;
+            padding: 65px 0;
+        }
+
+        .col-2 h1 {
+            font-size: 50px;
+            line-height: 60px;
+            margin: 25px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ff523b;
+            color: #fff;
+            padding: 8px 30px;
+            margin: 30px 0;
+            border-radius: 30px;
+            transition: background 0.5s;
+        }
+
+        .btn:hover {
+            background: #563434;
+        }
+
+        .header .row {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <hr>
+        <?php
+
+        echo $this->getRequest()->getParams('id') . "<br>";
+        $productModel = Mage::getModel('product/product')->load(15);
+        echo "<pre>";
+        echo "Product Id : ";
+        print_r($productModel->getId());
+        echo "<br>";
+        echo "Product Name : ";
+        print_r($productModel->getProductName());
+        echo "<br>";
+        echo "SKU : ";
+        print_r($productModel->getSku());
+        echo "<br>";
+        print_r($productModel);
+        ?>
+        <div class="row">
+
+            <div class="col-2">
+                <h1>Give Your Workout <br> A New Style!</h1>
+                <p>Success isn't always about greatness. It's about consistency. <br> Consistent hard work gain
+                    success. Greatness will come.</p>
+                <a href="" class="btn">Explore Now &#8594;</a>
+            </div>
+            <div class="col-2">
+                <img src="..\MVC\app\code\Local\images/image1.png" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

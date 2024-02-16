@@ -6,22 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Information</title>
     <?php echo ($this->getChildHtml('head')); ?>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .header {
+            background: radial-gradient(#fff, #ffd6d6); 
+        }
+    </style>
 </head>
 
 <body>
+    <div class = "header">
     <div>
         <?php echo ($this->getChildHtml('header')); ?>
     </div>
-    
-    <div>
+
+    <!-- <div>
         <?php echo ($this->getChildHtml('messages')); ?>
+    </div> -->
+    <div>
+        <?php echo ($this->getChildHtml('content')); ?>
     </div>
-    
+
     <div>
         <?php echo ($this->getChildHtml('footer')); ?>
     </div>
-    <div>
-        <?php echo ($this->getChildHtml('content')); ?>
     </div>
 </body>
 

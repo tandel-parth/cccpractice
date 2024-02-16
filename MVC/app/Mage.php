@@ -20,7 +20,7 @@ class Mage
     public static function getBlock($className)
     {
         $className = str_replace('/','_Block_', $className);
-        $className = ucwords($className,"_");
+        $className = ucwords($className,'_');
         return new $className;
     }
     public static function register($key, $value)

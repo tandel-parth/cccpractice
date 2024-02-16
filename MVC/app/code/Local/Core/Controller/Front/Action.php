@@ -5,6 +5,8 @@ class Core_Controller_Front_Action
  public function getLayout(){
     if (is_null($this->_layout)){
         $layout = Mage::getBlock('core/layout');
+        // echo "<pre>";
+        // print_r($layout);
         return $layout;
         // echo get_class($layout);
     }

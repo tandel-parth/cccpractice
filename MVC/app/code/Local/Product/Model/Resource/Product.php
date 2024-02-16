@@ -12,6 +12,18 @@ class Product_Model_Resource_Product
     //Above part is abstract
     public function __construct()
     {
-        $this->init('ccc_product','Product_id');
+        $this->init('ccc_product','product_id');
+    }
+
+    public function load($id, $column = null)
+    {
+        $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey} = $id LIMIT 1";
+        return $this->getAdapter()->fetchRow($sql);
+    }
+    public function getAdapter(){
+        return new Core_Model_DB_Adapter();
+    }
+    public function getPrimaryKey(){
+        return $this->_primaryKey;
     }
 }
