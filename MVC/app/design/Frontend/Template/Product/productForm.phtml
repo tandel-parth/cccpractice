@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #d6b1e5, #94d4ff);
+        }
+
+        .box {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .formContainer {
+            max-width: 700px;
+            width: 100%;
+            background-color: #fff;
+            padding: 25px 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .formContainer .title {
+            font-size: 25px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .formContainer .title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 210px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+
+        .content form .user-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0 0px 0;
+        }
+
+        .content form .user-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0 0px 0;
+        }
+
+        form .user-details .input-box {
+            margin-bottom: 15px;
+            width: calc(100% / 2 - 20px);
+        }
+
+        form .input-box span.details {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        form .input-box-1 span.details {
+            display: block;
+            font-weight: 500;
+            margin-bottom: -10px;
+        }
+
+        .input-box-1 {
+            width: 300px;
+            max-width: 100%;
+        }
+
+        .input-box p {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+            padding-top: 2px;
+            color: red;
+        }
+
+        .user-details .input-box input {
+            height: 45px;
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .user-details .input-box select {
+            height: 45px;
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .user-details .input-box input:focus {
+            border-color: #9b59b6;
+        }
+
+        .user-details .input-box select:focus {
+            border-color: #9b59b6;
+        }
+
+        form .button {
+            height: 45px;
+            margin: 20px 0
+        }
+
+        form .button input {
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+
+        form .button input:hover {
+            transform: scale(0.99);
+            background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+        }
+
+        @media(max-width: 584px) {
+            .container {
+                max-width: 100%;
+                height: 200vh;
+                max-height: 80%;
+            }
+
+            form .user-details .input-box {
+                margin-bottom: 15px;
+                width: 100%;
+            }
+
+            .input-box-1 {
+                margin-bottom: 10px;
+            }
+
+            .input-box-1 input {
+                margin-bottom: 5px;
+            }
+
+            form .category {
+                width: 100%;
+            }
+
+            .content form .user-details {
+                max-height: 55vh;
+                overflow-y: scroll;
+            }
+
+            .user-details::-webkit-scrollbar {
+                width: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="formContainer">
+            <div class="title">Product Information</div>
+            <div class="content">
+                <form action="<?php echo $this->getUrl('catalog/product/save') ?>" method="post">
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details" for="product_id">Product ID</span>
+                            <input type="text" placeholder="Enter Product ID" id="product_id" name="ccc_product[product_id]"
+                                value="">
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="product_name">Product Name</span>
+                            <input type="text" placeholder="Enter Product Name" id="product_name"
+                                name="ccc_product[product_name]" value="" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="sku">SKU</span>
+                            <input type="text" placeholder="Enter SKU" id="sku" name="ccc_product[sku]" value="" required>
+                        </div>
+                        <div class="input-box-1" style="justify-content:left">
+                            <span class="details" for="productype">Product Type</span><br>
+                            <input type="radio" id="simpleType" name="ccc_product[product_type]" value="Simple">
+                            <span for="simpleType">Simple</span><br>
+                            <input type="radio" id="bundleType" name="ccc_product[product_type]" value="Bundle">
+                            <span for="bundleType">Bundle</span>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="category_id">Category</span>
+                            <select id="category_id" name="ccc_product[category_id]" class="input-box" required>
+                                <?php
+                                $categories = ["--Select--", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+                                foreach ($categories as $cat) {
+                                    echo '<option value="' . $cat . '" >' . $cat . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="manufacturerCost">Manufacturer Cost</span>
+                            <input type="text" placeholder="Enter Manufacturer Cost" id="manufacturerCost"
+                                name="ccc_product[manufacturer_cost]" value="" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="shippingCost">Shipping Cost </span>
+                            <input type="text" placeholder="Enter Shipping Cost" id="shippingCost"
+                                name="ccc_product[shipping_cost]" value="" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="price">Price</span>
+                            <input type="text" placeholder="Enter Price" id="price" name="ccc_product[price]" value=""
+                                required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="status">Status</span>
+                            <select id="status" name="ccc_product[status]" class="input-box" required>
+                                <option value="">---select---</option>
+                                <option value="Enabled">Enabled</option>
+                                <option value="Disabled">Disabled</option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="createdAt">Created At</span>
+                            <input type="date" id="createdAt" name="ccc_product[created_at]" value="" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details" for="updatedAt">Updated At</span>
+                            <input type="date" id="updatedAt" name="ccc_product[updated_at]" value="" required>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

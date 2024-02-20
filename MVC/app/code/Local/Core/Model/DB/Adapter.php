@@ -19,6 +19,7 @@ class Core_Model_DB_Adapter
                 $this->config["password"], 
                 $this->config["database"]);
         }
+        return $this->connect;  
     }
     public function fetchAll($query)
     {
@@ -39,8 +40,14 @@ class Core_Model_DB_Adapter
         }
         return $_row;
     }
-    public function insert($query)
-    {
+    public function insert($query) {
+        $sql = mysqli_query($this->connect(),$query);
+        if ($sql) {
+            echo "<script>alert('Data Update Succsessfully!')</script>";
+            return mysqli_insert_id($this->connect());
+        } else {
+            return FALSE;
+        }
     }
     public function update($query)
     {

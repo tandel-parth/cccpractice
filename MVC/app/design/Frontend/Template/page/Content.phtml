@@ -75,32 +75,23 @@
         <hr>
         <?php
 
-        echo $this->getRequest()->getParams('id') . "<br>";
-        $productModel = Mage::getModel('product/product')->load(15);
-        echo "<pre>";
-        echo "Product Id : ";
-        print_r($productModel->getId());
-        echo "<br>";
-        echo "Product Name : ";
-        print_r($productModel->getProductName());
-        echo "<br>";
-        echo "SKU : ";
-        print_r($productModel->getSku());
-        echo "<br>";
-        print_r($productModel);
+        // echo $this->getRequest()->getParams('id') . "<br>";
+        // $productModel = Mage::getModel('Catalog/product')->load(15);
+        // echo "<pre>";
+        // echo "Product Id : ";
+        // print_r($productModel->getId());
+        // echo "<br>";
+        // echo "Product Name : ";
+        // print_r($productModel->getProductName());
+        // echo "<br>";
+        // echo "SKU : ";
+        // print_r($productModel->getSku());
+        // echo "<br>";
+        // print_r($productModel);
         ?>
-        <div class="row">
 
-            <div class="col-2">
-                <h1>Give Your Workout <br> A New Style!</h1>
-                <p>Success isn't always about greatness. It's about consistency. <br> Consistent hard work gain
-                    success. Greatness will come.</p>
-                <a href="" class="btn">Explore Now &#8594;</a>
-            </div>
-            <div class="col-2">
-                <img src="..\MVC\app\code\Local\images/image1.png" alt="">
-            </div>
-        </div>
+        <?php echo $this->getChildHtml('') ?>
+        <?php  ?>
     </div>
 </body>
 
