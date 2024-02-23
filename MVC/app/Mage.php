@@ -3,6 +3,7 @@
 class Mage
 {
     private static $baseDir = "E:/xampp/htdocs/CyberCom/MVC"; 
+    private static $baseUrl = "http://localhost/cybercom/MVC"; 
     public static function init()
     {
         $forntController = new Core_Controller_Front();
@@ -28,6 +29,16 @@ class Mage
     }
     public static function registry($key)
     {
+    }
+    public static function getImagesUrl($images){
+        return self::$baseUrl."/Skin/Images/".$images;
+    }
+    public static function getBaseUrl($subUrl = null)
+    {
+        if ($subUrl) {
+            return self::$baseUrl . '/Skin/' . $subUrl;
+        }
+        return self::$baseUrl;
     }
     public static function getBaseDir($subDir = null)
     {

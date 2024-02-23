@@ -43,17 +43,28 @@ class Core_Model_DB_Adapter
     public function insert($query) {
         $sql = mysqli_query($this->connect(),$query);
         if ($sql) {
-            echo "<script>alert('Data Update Succsessfully!')</script>";
-            return mysqli_insert_id($this->connect());
+            echo "<script>alert('Data Insert Succsessfully!')</script>";
         } else {
             return FALSE;
         }
     }
     public function update($query)
     {
+        $sql = mysqli_query($this->connect(),$query);
+        if ($sql) {
+            echo "<script>alert('Data Update Succsessfully!')</script>";
+        } else {
+            return FALSE;
+        }
     }
     public function delete($query)
     {
+        $sql = mysqli_query($this->connect(),$query);
+        if ($sql) {
+            echo "<script>alert('Data Delete Succsessfully!')</script>";
+        } else {
+            return FALSE;
+        }
     }
     public function query($query)
     {
