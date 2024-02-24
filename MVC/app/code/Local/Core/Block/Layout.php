@@ -8,6 +8,9 @@ class Core_Block_Layout extends Core_Block_Template
     }
     public function prepareChildren()
     {
+        $head = $this->createBlock('page/head');
+        $this->addChild('head',$head);
+
         $header = $this->createBlock('page/header');
         $this->addChild('header',$header);
 
@@ -16,9 +19,6 @@ class Core_Block_Layout extends Core_Block_Template
 
         $footer = $this->createBlock('page/footer');
         $this->addChild('footer',$footer);
-
-        $head = $this->createBlock('page/head');
-        $this->addChild('head',$head);
 
         $messages = $this->createBlock('core/template');
         $messages->setTemplate('core/messages.phtml');

@@ -14,13 +14,14 @@ class Core_Model_Request
         $this->_getActionName = isset($arr[2]) ? $arr[2] : "index";
 
     }
-    public function getParams($key = '')
+    public function getParams($key = '', $arg=null)
     {
         return ($key == '')
             ? $_REQUEST
             : (isset($_REQUEST[$key])
                 ? $_REQUEST[$key]
-                : '');
+                : ((!is_null($arg)) ? $arg : '')
+            );
     }
     public function getPostData($key = '')
     {

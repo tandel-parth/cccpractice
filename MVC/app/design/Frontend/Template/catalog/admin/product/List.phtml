@@ -1,0 +1,43 @@
+<?php
+// echo "<pre>";
+$productCollection = Mage::getModel("catalog/product")->getCollection();
+// $productCollection->addFieldToFilter('name', 'abc');
+// $productCollection->addFieldToFilter('product_id', ['in'=>[1,2,3]]);
+// $productCollection->addFieldToFilter('sku', ['like'=>'%abc']);
+// $productCollection->getData();
+?>
+<div class="box">
+    <div class="container-list">
+        <div class="add">
+            <div class="title">Product Information</div>
+            <a href='<?php echo $this->getUrl('admin/catalog_product/form') ?>'><button class="add_btn">Add</button></a>
+        </div>
+        <table>
+                        <tr>
+                            <th width='200vh'>Product ID</th>
+                            <th width='200vh'>Product Name</th>
+                            <th width='200vh'>SKU</th>
+                            <th width='200vh'>Category</th>
+                            <th width='200vh'>Edit</th>
+                            <th width='200vh'>Delete</th>
+                        </tr>
+
+<?php
+foreach ($productCollection->getData() as $product) {
+    // echo $product->getStatus();
+    // echo '' . $product->getProductId();
+    echo "<tr><td class = 'column'>" . $product->getProductId() . "</td><td class = 'column'>" . $product->getName() . "</td><td class = 'column'>" . $product->getSku() . "</td><td class = 'column'>" . $product->getCategoryId(). "</td>";
+    ?>
+    <td align='center' class='button'> <a
+                        href='<?php echo $this->getUrl('admin/catalog_product/form/') ?>?id=<?php echo $product->getProductId() ?>'><button
+                            class='upd'>Edit</button></a> </td>
+                <td align='center' class='button'> <a
+                        href='<?php echo $this->getUrl('admin/catalog_product/delete/') ?>?id=<?php echo $product->getProductId() ?>'><button
+                            class='del'>Delete</button></a> </td>
+                </tr>
+    <?php
+}
+?>
+</table>
+</div>
+</div>

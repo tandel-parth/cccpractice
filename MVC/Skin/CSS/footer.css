@@ -1,5 +1,5 @@
 .footer {
-    background: #000;
+    background: #000000;
     color: #8a8a8a;
     font-size: 14px;
     padding: 20px 0 20px;
@@ -53,6 +53,23 @@ ul {
 .app-logo img {
     width: 150px;
 }
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+  }
+  .fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  
 
 .footer hr {
     border: none;

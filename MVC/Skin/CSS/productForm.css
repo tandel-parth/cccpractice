@@ -60,11 +60,13 @@
  form .input-box-1 span.details {
      display: block;
      font-weight: 500;
-     margin-bottom: -10px;
  }
+ form .input-box-1 span.details_box {
+    margin-right: 10px;
+}
 
  .input-box-1 {
-     width: 28vh;
+     width: 350px;
      max-width: 100%;
  }
 

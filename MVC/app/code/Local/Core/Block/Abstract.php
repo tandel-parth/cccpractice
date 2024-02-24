@@ -4,6 +4,7 @@ class Core_Block_Abstract
     public $template;
     public function setTemplate($template)
     {
+        // echo ("hello");
         $this->template = $template;
         return $this;
     }
@@ -39,6 +40,7 @@ class Core_Block_Abstract
     }
     public function render()
     {
+        // echo $this->getTemplate();
         include Mage::getBaseDir('app') . '/design/frontend/template/' . $this->getTemplate();
     }
     

@@ -32,15 +32,6 @@ class Core_Block_Template extends Core_Block_Abstract
         }
         return $html;
     }
-    public function setTemplate($template)
-    {
-        $this->template = $template;
-        return $this;
-    }
-    public function getTemplate()
-    {
-        return $this->template;
-    }
     public function getRequest()
     {
         return Mage::getModel('core/request');

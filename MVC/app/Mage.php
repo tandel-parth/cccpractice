@@ -2,7 +2,7 @@
 
 class Mage
 {
-    private static $baseDir = "E:/xampp/htdocs/CyberCom/MVC"; 
+    private static $baseDir = "C:/xampp/htdocs/CyberCom/MVC"; 
     private static $baseUrl = "http://localhost/cybercom/MVC"; 
     public static function init()
     {
