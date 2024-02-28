@@ -7,11 +7,10 @@ class Catalog_Model_Product extends Core_Model_Abstract{
     public function getStatus(){
         $mapping = [
             1=>"Enabled",
-            0=>"Desabled"
+            0=>"Disabled"
         ];
-        return $mapping[$this->_data['status']];
-    }   
-    // public function getCategoryId(){
-    //     print_r(Mage::getModel('catalog/category')->$this->getCollection());
-    // }
+        if(isset($this->_data["status"])){
+            return $mapping[$this->_data['status']];
+        }
+    }    
 }

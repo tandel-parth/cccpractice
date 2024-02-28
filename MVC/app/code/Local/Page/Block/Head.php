@@ -9,10 +9,12 @@ class Page_Block_Head extends Core_Block_Template{
     public function addJs($file)
     {
         $this->_js[] = $this->getJsUrl($file);
+        return $this;
     }
     public function addCss($file)
     {
         $this->_css[] = $this->getCssUrl($file);
+        return $this;
     }
     public function getJs()
     {

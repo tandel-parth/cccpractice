@@ -4,6 +4,7 @@ class Mage
 {
     private static $baseDir = "C:/xampp/htdocs/CyberCom/MVC"; 
     private static $baseUrl = "http://localhost/cybercom/MVC"; 
+    private static $_singleTon = []; 
     public static function init()
     {
         $forntController = new Core_Controller_Front();
@@ -11,6 +12,14 @@ class Mage
     }
     public static function getSingleton($className)
     {
+        if(isset(self::$_singleTon[$className])){
+            return  self::$_singleTon[$className]; 
+
+        }
+        else{
+
+            return self::$_singleTon[$className] = self::getModel($className); 
+        }
     }
     public static function getModel($className)
     {

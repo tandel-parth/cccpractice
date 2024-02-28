@@ -28,8 +28,4 @@ class Core_Block_Layout extends Core_Block_Template
     {
         return Mage::getBlock($className);
     }
-    public function getRequest()
-    {
-        return Mage::getModel('core/request');
-    }
 }

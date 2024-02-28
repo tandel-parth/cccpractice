@@ -5,13 +5,14 @@ class Core_Model_Resource_Collection_Abstract
     protected $_resource = null;
     protected $_select = [];
     protected $_data = [];
-    // public function __construct()
-    // {
-    //     echo 123;
-    // }
+    protected $_model = null;
     public function setResource($resource)
     {
         $this->_resource = $resource;
+        return $this;
+    }
+    public function setModel($model){
+        $this->_model = $model;
         return $this;
     }
     public function select()
@@ -22,7 +23,6 @@ class Core_Model_Resource_Collection_Abstract
     public function addFieldToFilter($field, $value)
     {
         $this->_select['WHERE'][$field][] = $value;
-        var_dump($this->_select['WHERE'][$field]);
         return $this;
     }
     public function load()
@@ -62,9 +62,10 @@ class Core_Model_Resource_Collection_Abstract
         // echo $sql;
         $result = $this->_resource->getAdapter()->fetchAll($sql);
         foreach ($result as $row) {
-            $this->_data[] = Mage::getModel('catalog/product')->setData($row);
+            $modelObj = new $this->_model;
+            $this->_data[] = $modelObj->setData($row);
+            // $this->_data[] = Mage::getModel('core/abstract')->setData($row);
         }
-        // print_r($this->_data);
     }
     public function getData()
     {

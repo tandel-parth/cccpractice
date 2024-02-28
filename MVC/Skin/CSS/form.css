@@ -18,7 +18,9 @@
  .formContainer .title {
      font-size: 25px;
      font-weight: 500;
+     margin-bottom: 15px;
      position: relative;
+     padding-bottom: 3px;
  }
 
  .formContainer .title::before {
@@ -27,7 +29,7 @@
      left: 0;
      bottom: 0;
      height: 3px;
-     width: 210px;
+     width: 225px;
      border-radius: 5px;
      background: linear-gradient(135deg, #71b7e6, #9b59b6);
  }
