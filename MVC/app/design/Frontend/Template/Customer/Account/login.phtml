@@ -1,0 +1,25 @@
+<div class="box">
+    <div class="formContainer">
+        <div class="title-login">Login Form</div>
+        <div class="content">
+            <form action="<?php echo $this->getUrl('customer/account/login') ?>" method="post">
+
+                    <div class="input-box">
+                        <span class="details" for="customer_email">Customer E-mail</span>
+                        <input type="email" placeholder="Enter Customer E-mail" id="customer_email" name="customer[customer_email]"
+                            value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="password">Password</span>
+                        <input type="password" placeholder="Enter Password" id="password"
+                            name="customer[password]" value="" required>
+                    </div>
+
+                <div class="button">
+                    <input type="submit" value="Submit" name = "Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

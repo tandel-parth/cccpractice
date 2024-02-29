@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Information</title>
+    <?php echo ($this->getChildHtml('head')); ?>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* background: radial-gradient(#fff, #ffd6d6);  */
+        }
+        .header {
+            background: radial-gradient(#fff, #ffd6d6); 
+        }
+    </style>
+</head>
+
+<body>
+    <div class = "header">
+    <div>Admin
+        <?php echo ($this->getChildHtml('header')); ?>
+    </div>
+
+    <!-- <div>
+        <?php echo ($this->getChildHtml('messages')); ?>
+    </div> -->
+    <div>
+        <?php echo ($this->getChildHtml('content')); ?>
+    </div>
+   
+    </div>
+    <div>
+        <?php echo ($this->getChildHtml('footer')); ?>
+    </div>
+</body>
+
+</html>

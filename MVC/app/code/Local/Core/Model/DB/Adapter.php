@@ -52,20 +52,18 @@ class Core_Model_Db_Adapter
         echo $query;
         $result = mysqli_query($this->connect(), $query);
         if($result){
-            echo '<script>alert("Data inserted successfully")</script>';
             return mysqli_insert_id($this->connect);
         }else{
-            echo '<script>alert("Data not inserted")</script>';
+            return false;
         }
     }
     public function update($query)
     {
         $result = mysqli_query($this->connect(), $query);
         if($result){
-            echo '<script>alert("Data updated successfully")</script>';
-            // return mysqli_insert_id($this->connect);
+            return true;
         }else{
-            echo '<script>alert("Data not updated")</script>';
+            return false;
         }
         
     }
@@ -73,9 +71,9 @@ class Core_Model_Db_Adapter
     {
         $result = mysqli_query($this->connect(), $query);
         if($result){
-            echo '<script>alert("Data deleted successfully")</script>';
+            return true;
         }else{
-            echo '<script>alert("Data not deleted")</script>';
+            return false;
         }
     }
     public function query($query)

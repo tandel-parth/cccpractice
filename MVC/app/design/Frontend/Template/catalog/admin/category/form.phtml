@@ -4,23 +4,27 @@
         <div class="title">Category Information</div>
         <div class="content">
             <form action="<?php echo $this->getUrl('admin/catalog_category/save') ?>" method="post">
-                <div class="user-details">
-                    <input type="hidden" placeholder="Enter Category ID" id="category_id"
-                        name="catalog_category[category_id]" value="<?php echo $data->getCategoryId() ?>">
-                    <div class="input-box">
-                        <span class="details" for="category_name">Name</span>
-                        <input type="text" placeholder="Enter Product Name" id="category_name" name="catalog_category[category_name]"
-                            value="<?php echo $data->getCategoryName() ?>" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details" for="status">Status</span>
-                        <select id="status" name="catalog_category[status]" class="input-box" required>
-                            <option value="">---select---</option>
-                            <option value="1" <?php echo (($data->getStatus()  == "Enabled") ? 'selected' : '')?>>Enabled</option>
-                            <option value="0" <?php echo (($data->getStatus()  == "Disabled") ? 'selected' : '')?>>Disabled</option>
-                        </select>
-                    </div>
+
+                <input type="hidden" placeholder="Enter Category ID" id="category_id"
+                    name="catalog_category[category_id]" value="<?php echo $data->getCategoryId() ?>">
+
+                <div class="input-box">
+                    <span class="details" for="category_name">Name</span>
+                    <input type="text" placeholder="Enter Product Name" id="category_name"
+                        name="catalog_category[category_name]" value="<?php echo $data->getCategoryName() ?>" required>
                 </div>
+
+                <div class="input-box">
+                    <span class="details" for="status">Status</span>
+                    <select id="status" name="catalog_category[status]" class="input-box" required>
+                        <option value="">---select---</option>
+                        <option value="1" <?php echo (($data->getStatus() == "Enabled") ? 'selected' : '') ?>>Enabled
+                        </option>
+                        <option value="0" <?php echo (($data->getStatus() == "Disabled") ? 'selected' : '') ?>>Disabled
+                        </option>
+                    </select>
+                </div>
+                
                 <div class="button">
                     <input type="submit" value="Submit">
                 </div>

@@ -1,7 +1,8 @@
 <?php
 
-class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
+class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 {
+    protected $_allowedActions = ['form'];
     public function formAction()
     {
         $layout = $this->getLayout();
@@ -10,19 +11,41 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         $productForm = $layout->createBlock('catalog/admin_product_form');
         $child->addChild('form', $productForm);
         $layout->toHtml();
+
     }
     public function saveAction()
     {
-        $productModel = $this->getRequest()->getParams('catalog_product');
-        Mage::getModel('catalog/product')
-            ->setData($productModel)
+        $productData = $this->getRequest()->getParams('catalog_product');
+        $result = Mage::getModel('catalog/product')
+            ->setData($productData)
             ->save();
+        if ($productData['product_id']) {
+            if ($result) {
+                echo '<script>alert("Data Update successfully")</script>';
+                echo "<script>location.href='" . Mage::getBaseUrl() . '/admin/catalog_product/list' . "'</script>";
+            } else {
+                echo '<script>alert("Dofa Code Ma Locha Chhe")</script>';
+            }
+        } else {
+            if ($result) {
+                echo '<script>alert("Data Insert successfully")</script>';
+                echo "<script>location.href='" . Mage::getBaseUrl() . '/admin/catalog_product/list' . "'</script>";
+            } else {
+                echo '<script>alert("Dofa Code Ma Locha Chhe")</script>';
+            }
+        }
     }
     public function deleteAction()
     {
         $productId = $this->getRequest()->getParams('id');
-        Mage::getModel('catalog/product')->load($productId)
+        $result = Mage::getModel('catalog/product')->load($productId)
             ->delete();
+        if ($result) {
+            echo '<script>alert("Data Deleted successfully")</script>';
+            echo "<script>location.href='" . Mage::getBaseUrl() . '/admin/catalog_product/list' . "'</script>";
+        } else {
+            echo '<script>alert("Dofa Code Ma Locha Chhe")</script>';
+        }
     }
     public function listAction()
     {

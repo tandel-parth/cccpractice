@@ -4,7 +4,7 @@ class Mage
 {
     private static $baseDir = "C:/xampp/htdocs/CyberCom/MVC"; 
     private static $baseUrl = "http://localhost/cybercom/MVC"; 
-    private static $_singleTon = []; 
+    private static $_singleTon = NULL; 
     public static function init()
     {
         $forntController = new Core_Controller_Front();
@@ -48,6 +48,13 @@ class Mage
             return self::$baseUrl . '/Skin/' . $subUrl;
         }
         return self::$baseUrl;
+    }
+    public static function getBaseUrla($subUrl = null)
+    {
+        if ($subUrl) {
+            return self::$baseUrl . '/' . $subUrl;
+        }
+        return self::$baseUrl ."/";
     }
     public static function getBaseDir($subDir = null)
     {

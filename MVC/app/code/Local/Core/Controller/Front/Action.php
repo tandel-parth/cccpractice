@@ -4,10 +4,14 @@ class Core_Controller_Front_Action
     protected $_layout = null;
     public function __construct()
     {
+        $this->init();
         $layout = $this->getLayout();
         $layout->getChild('head')
             ->addCss('header.css')
             ->addCss('footer.css');
+    }
+    public function init(){
+        return $this;
     }
     public function getLayout()
     {
@@ -25,6 +29,11 @@ class Core_Controller_Front_Action
         if (!is_null($file)) {
             $this->_layout->getChild('head')->addCss($file);
         }
+    }
+
+    public function setRedirect($url){
+        $url = Mage::getBaseUrla().$url;
+        header('Location: '.$url);
     }
     
 }
