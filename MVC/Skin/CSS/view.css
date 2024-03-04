@@ -1,0 +1,174 @@
+
+.small-container {
+    max-width: 1300px;
+    display: flex;
+    justify-content:space-between;
+}
+.products {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* width: 60%;  */
+}
+.row-1 {
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+
+.col-4 {
+    flex-basis: 30%;
+    padding: 10px;
+    min-width: 200px;
+    margin-bottom: 50px;
+    transition: transform 0.5s;
+}
+
+.col-4 img {
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+    margin: 0 auto 80px;
+    position: relative;
+    line-height: 60px;
+    color: #555;
+}
+
+.title::after {
+    content: '';
+    background: #ff523b;
+    width: 80px;
+    height: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+h4 {
+    color: #555;
+    font-weight: normal;
+}
+h2 {
+    color: #393939;
+    font-weight: normal;
+}
+
+.col-4 p {
+    font-size: 14px;
+}
+.add-cart {
+    display: inline-block;
+    background: #ff523b;
+    font-size: 12px;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 30px;
+}
+.add-cart:hover{
+    color: #fff;
+    background:#ff9c8f;
+}
+
+
+.rating svg{
+    width: 20px;
+    height: 20px;
+}
+
+.col-4:hover {
+    transform: translateY(-5px);
+}
+
+/*---------cart items---------*/
+
+.cart-page {
+    margin: 19px auto;
+    max-width: 245vw;
+    min-width: 35vw;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+th {
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background: #ff523b;
+    font-weight: normal;
+}
+
+td {
+    padding: 10px 5px;
+}
+
+td input {
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+}
+
+td .order-place{
+    display: inline-block;
+    background: #65ff3b;
+    font-size: 12px;
+    color: #fff;
+    margin-top: 5px;
+    padding: 3px 10px;
+    border-radius: 30px;
+}
+td .order-place:hover{
+    background: #8cd378;
+}
+
+td .order-remove {
+    display: inline-block;
+    background: #ff3b3b;
+    font-size: 12px;
+    color: #fff;
+    margin-top: 7px;
+    padding: 3px 10px;
+    border-radius: 30px;
+}
+td .order-remove:hover{
+    background: #ff8484;
+}
+
+td img {
+    width: 90px;
+    height: 90px;
+    margin-right: 10px;
+}
+
+.total-price {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
+
+.total-price table {
+    border-top: 3px solid #ff523b;
+    width: 100%;
+    max-width: 410px;
+}
+
+td:last-child {
+    text-align: right;
+}
+
+th:last-child {
+    text-align: right;
+}

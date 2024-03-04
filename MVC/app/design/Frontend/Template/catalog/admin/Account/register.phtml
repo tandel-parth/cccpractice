@@ -1,0 +1,125 @@
+<div class="box">
+    <div class="formContainer">
+        <div class="title">Product Information</div>
+        <div class="content">
+            <form action="<?php echo $this->getUrl('customer/account/save') ?>" method="post">
+                <div class="user-details">
+
+                    <input type="hidden" placeholder="Enter Customer ID" id="customer_id"
+                        name="customer[customer_id]" value="">
+
+                    <div class="input-box">
+                        <span class="details" for="customer_email">Customer E-mail</span>
+                        <input type="email" placeholder="Enter Customer E-mail" id="customer_email" name="customer[customer_email]"
+                            value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="first_name">First Name</span>
+                        <input type="text" placeholder="Enter First Name" id="first_name" name="customer[first_name]"
+                            value="" required>
+                    </div>
+
+                    <!-- <div class="input-box">
+                        <span class="details" for="color">Color</span>
+                        <select id="color" name="customer[color]" class="input-box" required>
+                            <?php
+                            $color = ["--Select--", "Red", "Green", "Pink", "Blue", "Gray", "Black", "White"];
+
+                            foreach ($color as $col) {
+                                echo '<option value="' . $col . '" >' . $col . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div> -->
+                    <!-- <div class="input-box-1" style="justify-content:left">
+                        <span class="details" for="size">Size</span><br>
+                        <input type="radio" id="small_type" name="customer[size]" value="Small">
+                        <span for="small_type"class="details_box">Small</span>
+                        <input type="radio" id="medium_type" name="customer[size]" value="Medium">
+                        <span for="medium_type"class="details_box">Medium</span>
+                        <input type="radio" id="large_type" name="customer[size]" value="Large">
+                        <span for="large_type"class="details_box">Large</span>
+                    </div> -->
+
+                    <div class="input-box">
+                        <span class="details" for="last_name">Last name</span>
+                        <input type="text" placeholder="Enter Last name" id="last_name"
+                            name="customer[last_name]" value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="billing_address">Billing Address</span>
+                        <input type="text" placeholder="Enter Billing Address" id="billing_address"
+                            name="customer[billing_address]" value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="billing_city">Billing City</span>
+                        <input type="text" placeholder="Enter Billing City" id="billing_city" name="customer[billing_city]"
+                            value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="billing_region">Billing Region</span>
+                        <input type="number" placeholder="Enter Billing Region" id="billing_region" name="customer[billing_region]"
+                            value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="billing_country">Billing Country</span>
+                        <input type="number" placeholder="Enter Billing Country" id="billing_country"
+                            name="customer[billing_country]" value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="billing_phone">Billing Phone</span>
+                        <input type="number" placeholder="Enter Billing Phone" id="billing_phone"
+                            name="customer[billing_phone]" value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="shipping_address">Shipping Address</span>
+                        <input type="text" placeholder="Enter Shipping Address" id="shipping_address"
+                            name="customer[shipping_address]" value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="shipping_city">Shipping City</span>
+                        <input type="text" placeholder="Enter Shipping City" id="shipping_city"
+                            name="customer[shipping_city]" value=""
+                            required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="shipping_region">Shipping Region</span>
+                        <input type="number" placeholder="Enter Shipping Region" id="shipping_region"
+                            name="customer[shipping_region]" value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="shipping_country">Shipping Country</span>
+                        <input type="number" placeholder="Enter Shipping Country" id="shipping_country"
+                            name="customer[shipping_country]" value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="shipping_phone">Shipping Phone</span>
+                        <input type="number" placeholder="Enter Shipping Phone" id="shipping_phone"
+                            name="customer[shipping_phone]" value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="default">Default</span>
+                        <input type="number" placeholder="Enter Default" id="default"
+                            name="customer[default]" value="" required>
+                    </div>
+
+                </div>
+                <div class="button">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

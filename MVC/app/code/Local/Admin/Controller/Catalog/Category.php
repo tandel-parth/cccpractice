@@ -2,6 +2,7 @@
 
 class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
 {
+    protected $_allowedActions = [];
     public function formAction()
     {
         $layout = $this->getLayout();

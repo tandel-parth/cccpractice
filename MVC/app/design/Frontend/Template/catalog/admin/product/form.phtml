@@ -1,4 +1,9 @@
-<?php $data = $this->getProduct() ?>
+<?php 
+$data = $this->getProduct();
+$categoryModel = Mage::getModel('catalog/category');
+$categorys = $categoryModel->getCategoryIdName();
+$selectedCategory = $categoryModel->getCategoryNameById($categorys, $data);
+?>
 <div class="box">
     <div class="formContainer">
         <div class="title">Product Information</div>
@@ -57,10 +62,8 @@
                         <span class="details" for="category_id">Category Id</span>
                         <select id="category_id" name="catalog_product[category_id]" class="input-box" required>
                             <?php
-                            $categories = ["--Select--", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-
-                            foreach ($categories as $cat) {
-                                echo '<option value="' . $cat . '"' . (($data->getCategoryId() == $cat) ? 'selected' : '') . '>' . $cat . '</option>';
+                            foreach ($categorys as $cat) {
+                                echo '<option value="' . $cat . '"' . (($selectedCategory == $cat) ? 'selected' : '') . '>' . $cat . '</option>';
                             }
                             ?>
                         </select>

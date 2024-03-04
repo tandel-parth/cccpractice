@@ -5,8 +5,8 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
+.box-header {
+    background: radial-gradient(#fff, #ffd6d6); 
 }
 
 .container {

@@ -1,3 +1,10 @@
+<?php
+$productCollection = Mage::getModel("banner/banner")->getCollection();
+$imageList = [];
+foreach ($productCollection->getData() as $value) {
+    $imageList[] = $value->getBannerImage();
+}
+?>
 <div class="row">
     <div class="col-2">
         <h1>Give Your Workout <br> A New Style!</h1>
@@ -6,6 +13,6 @@
         <a href="" class="btn">Explore Now &#8594;</a>
     </div>
     <div class="col-2">
-        <img src="<?php echo Mage::getImagesUrl('image1.png')?>" alt="">
+        <img src="<?php echo Mage::getImagePath($imageList[0]) ?>" alt="">
     </div>
 </div>

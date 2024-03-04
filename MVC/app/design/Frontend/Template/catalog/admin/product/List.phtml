@@ -1,4 +1,8 @@
-<?php $productCollection = Mage::getModel("catalog/product")->getCollection(); ?>
+<?php 
+$productCollection = $this->showList();
+$categoryModel = Mage::getModel('catalog/category');
+$categoryNames = $categoryModel->getCategoryIdName();
+?>
 <div class="box">
     <div class="container-list">
         <div class="add">
@@ -19,14 +23,15 @@
 
             <?php
             foreach ($productCollection->getData() as $product) {
+                $selectedCategory = $categoryModel->getCategoryNameById($categoryNames, $product);
                 // echo "<tr><td class = 'column'>";
                 // echo $product->getProductId();
-                echo "</td><td class = 'column'>";
+                echo "<td class = 'column'>";
                 echo $product->getName();
                 echo "</td><td class = 'column'>";
                 echo $product->getSku();
                 echo "</td><td class = 'column'>";
-                echo $product->getCategoryId();
+                echo $selectedCategory;
                 echo "</td>";
                 ?>
                 <td align='center' class='button'>

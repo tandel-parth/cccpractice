@@ -15,16 +15,13 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            /* background: radial-gradient(#fff, #ffd6d6);  */
-        }
-        .header {
-            background: radial-gradient(#fff, #ffd6d6); 
         }
     </style>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css">
 </head>
 
 <body>
-    <div class = "header">
     <div>
         <?php echo ($this->getChildHtml('header')); ?>
     </div>
@@ -35,8 +32,7 @@
     <div>
         <?php echo ($this->getChildHtml('content')); ?>
     </div>
-   
-    </div>
+
     <div>
         <?php echo ($this->getChildHtml('footer')); ?>
     </div>

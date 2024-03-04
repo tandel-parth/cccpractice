@@ -1,14 +1,23 @@
 <?php
 class Customer_Controller_Account extends Core_Controller_Front_Action
 {
-    protected $_allowedActions = ['login', 'register'];
+    // protected $_allowedActions = ['login', 'register'];
+    protected $_loginRequiredActions = [
+        'dashboard'
+    ];
+
     public function init(){
-        $this->getRequest()->getActionName();
-        if(!in_array($this->getRequest()->getActionName(),$this->_allowedActions) && 
-        !Mage::getSingleton('core/session')->get("logged_in_customer_id"))
-        {
-            $this->setRedirect('customer/account/login');
+        $action = $this->getRequest()->getActionName();
+        if( in_array($action, $this->_loginRequiredActions) ) {
+            $customerId = Mage::getSingleton('core/session')
+                ->get('logged_in_customer_id');
+            if( !$customerId ) {
+                $this->setRedirect('customer/account/login');
+                exit() ;
+            }
         }
+        
+        
     }
     public function registerAction()
     {
@@ -23,7 +32,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     public function saveAction()
     {
         $registerData = $this->getRequest()->getParams('customer');
-        $result = Mage::getModel('customer/Register')
+        $result = Mage::getModel('customer/customer')
             ->setData($registerData)
             ->save();
         if ($registerData['category_id']) {
@@ -46,7 +55,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     {
         if(isset($_POST['Submit'])) {
             $data = $this->getRequest()->getParams("customer");
-            $model= Mage::getModel("customer/register");
+            $model= Mage::getModel("customer/customer");
             $result =   $model->getCollection()
             ->addFieldToFilter("customer_email", $data["customer_email"])
             ->addFieldToFilter("password", $data["password"]);;
@@ -60,6 +69,8 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             if($count){
                 
                 Mage::getSingleton("core/session")->set("logged_in_customer_id",$customerId);
+                print_r($_SESSION);
+                // die();
                 $this->setRedirect('customer/account/dashboard');
             }else{
                 echo '<script>alert("Dofa password to sarkho nakh!!!!!")</script>';
@@ -68,7 +79,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             }
         }else{
             $layout = $this->getLayout();
-            
+            $layout->removeChild('header')->removeChild('footer');
             $this->includeCss('form.css');
             $child = $layout->getChild('content');
             $login = $layout->createBlock('customer/login');

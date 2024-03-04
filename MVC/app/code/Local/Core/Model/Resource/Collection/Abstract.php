@@ -57,14 +57,11 @@ class Core_Model_Resource_Collection_Abstract
                 }
             }
             $sql .= " WHERE " . implode(" AND ", $whereCondition);
-            // print_r($whereCondition);
         }
-        // echo $sql;
         $result = $this->_resource->getAdapter()->fetchAll($sql);
         foreach ($result as $row) {
             $modelObj = new $this->_model;
             $this->_data[] = $modelObj->setData($row);
-            // $this->_data[] = Mage::getModel('core/abstract')->setData($row);
         }
     }
     public function getData()

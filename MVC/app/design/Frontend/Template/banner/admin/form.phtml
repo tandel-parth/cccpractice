@@ -1,0 +1,38 @@
+<?php $data = $this->getBanner();?>
+<div class="box">
+    <div class="formContainer">
+        <div class="title">Banner Information</div>
+        <div class="content">
+            <form action=<?php echo $this->getUrl('admin/banner/save') ?> method="post">
+                <div class="user-details">
+
+                      <input type="hidden" name="banner[banner_id]" value ="<?php echo $data->getBannerId(); ?>">
+                      
+                    <div class="input-box">
+                        <label for="name" class="details">Image</label>
+                        <input type="file" class="form-control" id="banner_image" name="banner[banner_image]"
+                            placeholder="Enter name" value ="<?php echo $data->getBannerImage(); ?>">
+                    </div>
+                    <div class="input-box">
+                        <label for="status" class="details">Status</label>
+                        <!-- <input type="number" class="form-control" id="status" name="catalog_category[status]"
+                            placeholder="Enter status" value ="<?php //echo $data->getStatus(); ?>"> -->
+                            <select name="banner[status]">
+                                <option>---select---</option>
+                                <option <?php echo (($data->getStatus()  == "Disabled") ? 'selected' : '') ?> value="0">Disabled</option>
+                                <option <?php echo (($data->getStatus()  == "Enabled") ? 'selected' : '') ?> value="1">Enabled</option>
+                            </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="name" class="details">Show On</label>
+                        <input type="textbox" class="form-control" id="show_on" name="banner[show_on]"
+                            placeholder="Enter name" value ="<?php echo $data->getShowOn(); ?>">
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Submit" name="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

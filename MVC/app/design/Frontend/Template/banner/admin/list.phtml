@@ -1,0 +1,45 @@
+<?php
+
+$productCollection = Mage::getModel("banner/banner")->getCollection();
+$URL = Mage::getBaseUrl();
+?>
+<div class="box">
+<div class="container-list">
+    <div class="add">
+        <div class="title">Product Information</div>
+        <a href='<?php echo $this->getUrl('admin/catalog_product/form') ?>'>
+            <button class="add_btn">Add</button>
+        </a>
+    </div>
+    <table>
+        <tr>
+            <th width='200vh'>Id</th>
+            <th width='200vh'>Image</th>
+            <th width='200vh'>Status</th>
+            <th width='200vh'>UPDATE</th>
+            <th width='200vh'>DELETE</th>
+        </tr>
+    <?php foreach ($productCollection->getData() as $product):?>
+        <tr>
+            <td class = 'column'>
+                <?php print_r($product->getBannerId());
+                ?>
+            </td>
+            <td class = 'column'>
+                <?php print_r($product->getBannerImage()); ?>
+            </td>
+            <td class = 'column'>
+                <?php print_r($product->getStatus()); ?>
+            </td>
+            <td class = 'column'>
+                <a href="<?php echo $URL; ?>/admin/banner/form/?id=<?php print_r($product->getBannerId());?>"id="update"><button class='upd'>Edit</button></a>
+            </td>
+            <td class = 'column'>
+                <a href="<?php echo $URL; ?>/admin/banner/delete/?id=<?php print_r($product->getBannerId());?>"id="delete"><button class='del'>Delete</button></a>
+            </td>
+        </tr>
+        <?php endforeach;?>
+    </table>
+</div>
+</body>
+</html>
