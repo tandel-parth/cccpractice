@@ -23,11 +23,15 @@ class Admin_Controller_Tempconverter_Index extends Core_Controller_Admin_Action
         $convertUnit = $data['convert_unit'];
 
         if($unit == $convertUnit){
-            $data[1] = $tamp;
+            $data['temprature'] = $tamp;
         }else{
             if($unit == 'Farenheit'){
                 if($convertUnit == 'Celsius'){
-                    $data[1] = ((5/9)*$tamp - 32);
+                    $data['temprature'] = ((5/9)*$tamp - 32);
+                }
+            }elseif($unit == 'Celsius'){
+                if($convertUnit == 'Farenheit'){
+                    $data['temprature'] = ($tamp*(9/5)) + 32;
                 }
             }
         }
