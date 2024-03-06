@@ -7,7 +7,7 @@ $URL = Mage::getBaseUrl();
 <div class="container-list">
     <div class="add">
         <div class="title">Product Information</div>
-        <a href='<?php echo $this->getUrl('admin/catalog_product/form') ?>'>
+        <a href='<?php echo $this->getUrl('admin/banner/form') ?>'>
             <button class="add_btn">Add</button>
         </a>
     </div>
@@ -22,20 +22,20 @@ $URL = Mage::getBaseUrl();
     <?php foreach ($productCollection->getData() as $product):?>
         <tr>
             <td class = 'column'>
-                <?php print_r($product->getBannerId());
+                <?php echo($product->getBannerId());
                 ?>
             </td>
             <td class = 'column'>
-                <?php print_r($product->getBannerImage()); ?>
+                <?php echo($product->getBannerImage()); ?>
             </td>
             <td class = 'column'>
-                <?php print_r($product->getStatus()); ?>
+                <?php echo($product->getStatus()); ?>
             </td>
             <td class = 'column'>
-                <a href="<?php echo $URL; ?>/admin/banner/form/?id=<?php print_r($product->getBannerId());?>"id="update"><button class='upd'>Edit</button></a>
+                <a href="<?php echo $this->getUrl('admin/banner/form/') . '?id=' .$product->getBannerId();?>"id="update"><button class='upd'>Edit</button></a>
             </td>
             <td class = 'column'>
-                <a href="<?php echo $URL; ?>/admin/banner/delete/?id=<?php print_r($product->getBannerId());?>"id="delete"><button class='del'>Delete</button></a>
+                <a href="<?php echo $this->getUrl('admin/banner/delete/') . '?id=' .$product->getBannerId();?>"id="delete"><button class='del'>Delete</button></a>
             </td>
         </tr>
         <?php endforeach;?>

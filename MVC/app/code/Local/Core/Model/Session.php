@@ -8,14 +8,6 @@ class Core_Model_Session
         session_start();
     }
 
-    //customer/account/register - html form with fields for customer account 
-    //customer/account/login-email pass and check login  is valid or not , 
-    //use same action ad just put  validation on php side using ispost function
-    //customer/account/save - post data and store in db and check if email exists
-    //customer/account/dashboard - show details of cutomer
-    //customer/account/forgotpassword - html page with email option and post on same action
-
-
     public function remove($key)
     {
         if (isset($_SESSION[$key])) {

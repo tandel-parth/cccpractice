@@ -4,7 +4,7 @@ class Catalog_Controller_Product extends Core_Controller_Front_Action{
 
     public function viewAction()
     {
-        $this->includeCss("product.css");
+        $this->includeCss("products.css");
         $layout = $this->getLayout();
         $child = $layout->getchild('content'); //core_block_layout
         $productForm = $layout->createBlock('catalog/admin_product_list');

@@ -11,7 +11,7 @@ class Core_Model_Resource_Collection_Abstract
         $this->_resource = $resource;
         return $this;
     }
-    public function setModel($model){
+    public function setModelClass($model){
         $this->_model = $model;
         return $this;
     }
@@ -68,5 +68,9 @@ class Core_Model_Resource_Collection_Abstract
     {
         $this->load();
         return $this->_data;
+    }
+    public function getFirstItem() {
+        $this->load();
+        return (isset($this->_data[0])) ? $this->_data[0] : null;
     }
 }

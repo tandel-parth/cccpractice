@@ -15,8 +15,6 @@
                     </div>
                     <div class="input-box">
                         <label for="status" class="details">Status</label>
-                        <!-- <input type="number" class="form-control" id="status" name="catalog_category[status]"
-                            placeholder="Enter status" value ="<?php //echo $data->getStatus(); ?>"> -->
                             <select name="banner[status]">
                                 <option>---select---</option>
                                 <option <?php echo (($data->getStatus()  == "Disabled") ? 'selected' : '') ?> value="0">Disabled</option>

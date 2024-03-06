@@ -1,0 +1,43 @@
+<?php
+
+$brandCollection = Mage::getModel("tempconverter/tempconverter")->getCollection();
+?>
+<div class="box">
+<div class="container-list">
+    <div class="add">
+        <div class="title">Brand Information</div>
+        <a href='<?php echo $this->getUrl('admin/tempconverter_index/form/') ?>'>
+            <button class="add_btn">Add</button>
+        </a>
+    </div>
+    <table>
+        <tr>
+            <th width='200vh'>User Name</th>
+            <th width='200vh'>Temprature</th>
+            <th width='200vh'>Convert Temprature</th>
+            <th width='200vh'>UPDATE</th>
+            <th width='200vh'>DELETE</th>
+        </tr>
+    <?php foreach ($brandCollection->getData() as $brand):?>
+        <tr>
+            <td class = 'column'>
+                <?php echo ($brand->getUserName()); ?>
+            </td>
+            <td class = 'column'>
+                <?php echo ($brand->getTemprature()); ?>
+            </td>
+            <td class = 'column'>
+                <?php echo ($brand->getTemprature()); ?>
+            </td>
+            <td class = 'column'>
+                <a href="<?php echo $this->getUrl('admin/tempconverter_index/form/') . '?id=' . $brand->getUserName();?>"id="update"><button class='upd'>Edit</button></a>
+            </td>
+            <td class = 'column'>
+                <a href="<?php echo $this->getUrl('admin/tempconverter_index/list/') . '?id=' .$brand->getUserName();?>"id="delete"><button class='del'>Delete</button></a>
+            </td>
+        </tr>
+        <?php endforeach;?>
+    </table>
+</div>
+</body>
+</html>
