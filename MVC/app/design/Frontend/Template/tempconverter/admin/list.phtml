@@ -1,11 +1,7 @@
-<?php
-
-$brandCollection = Mage::getModel("tempconverter/tempconverter")->getCollection();
-?>
 <div class="box">
 <div class="container-list">
     <div class="add">
-        <div class="title">Brand Information</div>
+        <div class="title">Temprature Information</div>
         <a href='<?php echo $this->getUrl('admin/tempconverter_index/form/') ?>'>
             <button class="add_btn">Add</button>
         </a>
@@ -18,22 +14,22 @@ $brandCollection = Mage::getModel("tempconverter/tempconverter")->getCollection(
             <th width='200vh'>UPDATE</th>
             <th width='200vh'>DELETE</th>
         </tr>
-    <?php foreach ($brandCollection->getData() as $brand):?>
+    <?php foreach ($this->getCollectionsData() as $temp):?>
         <tr>
             <td class = 'column'>
-                <?php echo ($brand->getUserName()); ?>
+                <?php echo ($temp->getUserName()); ?>
             </td>
             <td class = 'column'>
-                <?php echo ($brand->getTemprature()); ?>
+                <?php echo ($temp->getTemprature()) ." ".($temp->getUnit()); ?>
             </td>
             <td class = 'column'>
-                <?php echo ($brand->getTemprature()); ?>
+                <?php echo ($temp->getTemprature())." ".($temp->getUnit()); ?>
             </td>
             <td class = 'column'>
-                <a href="<?php echo $this->getUrl('admin/tempconverter_index/form/') . '?id=' . $brand->getUserName();?>"id="update"><button class='upd'>Edit</button></a>
+                <a href="<?php echo $this->getUrl('admin/tempconverter_index/form/') . '?id=' . $temp->getId();?>"id="update"><button class='upd'>Edit</button></a>
             </td>
             <td class = 'column'>
-                <a href="<?php echo $this->getUrl('admin/tempconverter_index/list/') . '?id=' .$brand->getUserName();?>"id="delete"><button class='del'>Delete</button></a>
+                <a href="<?php echo $this->getUrl('admin/tempconverter_index/delete/') . '?id=' .$temp->getId();?>"id="delete"><button class='del'>Delete</button></a>
             </td>
         </tr>
         <?php endforeach;?>

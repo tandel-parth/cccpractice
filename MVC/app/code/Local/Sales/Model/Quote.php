@@ -52,10 +52,25 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if($this->getId()) {
             Mage::getModel("sales/quote_item")->addItem($this,$request['product_id'],$request['qty']);
         }
-
         $this->save();
-        
-        
+    }
+    public function updateProduct($request)
+    {
+        // var_dump(debug_backtrace());
+        $this->initQuote();
+        if($this->getId()) {
+            Mage::getModel("sales/quote_item")->updateItem($this,$request['quote_id'],$request['product_id'],$request['qty'],$request['item_id']);
+        }
+        $this->save();
+    }
+    public function deleteProduct($request)
+    {
+        // var_dump(debug_backtrace());
+        $this->initQuote();
+        if($this->getId()) {
+            Mage::getModel("sales/quote_item")->deleteItem($request['quote_id'],$request['item_id']);
+        }
+        $this->save();
     }
 }
 

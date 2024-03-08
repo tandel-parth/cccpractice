@@ -1,0 +1,74 @@
+<div class=" small-container cart-page">
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+        <?php
+        $subTotal = 0;
+        foreach ($this->getItemList()->getData() as $item) {
+            // var_dump($item->getProductId());
+            $productList = $this->getProductList($item->getProductId());
+            foreach ($productList->getData() as $product) {
+                ?>
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="<?php echo Mage::getImagePath($product->getImageLink()) ?>">
+                            <div>
+                                <p>
+                                    <?php echo $product->getName() ?>
+                                </p>
+                                <small>Price:
+                                    <?php echo "₹" . $product->getPrice() ?>
+                                </small>
+                                <br>
+                                <a href="<?php echo $this->getUrl('sales/quote/delete/') . '?quote_id=' . $item->getQuoteId() . '&item_id=' . $item->getItemId() ?>"
+                                    class="order-remove">Remove</a>
+                                <br>
+                                <form action="<?php echo $this->getUrl('sales/quote/update') ?>" method="post">
+                                    <button class="order-place" type="submit" name="update">Update</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="hidden" name="upd_cart[quote_id]" value="<?php echo $item->getQuoteId() ?>" min="0">
+                        <input type="hidden" name="upd_cart[item_id]" value="<?php echo $item->getItemId() ?>" min="0">
+                        <input type="hidden" name="upd_cart[product_id]" value="<?php echo $product->getProductId() ?>" min="0">
+                        <input type="number" name="upd_cart[qty]" value="<?php echo $item->getQty() ?>" min="0">
+                    </td>
+                    </form>
+                    <td>
+                        <?php echo "₹ " . $item->getRowTotal() ?>
+                    </td>
+                </tr>
+                <?php
+
+            }
+            $subTotal += $item->getRowTotal();
+        }
+        ?>
+    </table>
+    <div class="total-price">
+        <table>
+            <tr>
+                <td>Total</td>
+                <td>
+                    <?php echo "₹ " . $subTotal ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Tax</td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td>Final Total</td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -4,6 +4,7 @@ class Core_Controller_Front_Action
     protected $_layout = null;
     public function __construct()
     {
+        Mage::getSingleton("core/session");
         $this->init();
         $layout = $this->getLayout();
         $layout->getChild('head')
