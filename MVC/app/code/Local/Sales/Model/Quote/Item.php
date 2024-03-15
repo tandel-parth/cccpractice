@@ -7,7 +7,6 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
     {
         $this->_resourceClass = 'Sales_Model_Resource_Quote_Item';
         $this->_collectionClass = 'Sales_Model_Resource_Collection_Quote_Item';
-        $this->_modelClass = 'sales/quote_item';
     }
 
     public function getProduct()
@@ -50,17 +49,16 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
 
         return $this;
     }
-    public function updateItem(Sales_Model_Quote $quote, $quoteId, $productId, $qty, $itemId)
+    public function updateItem($quoteId, $productId, $qty, $itemId)
     {
         $item = $this->getCollection()
             ->addFieldToFilter('item_id', $itemId)
             ->addFieldToFilter('quote_id', $quoteId)
             ->addFieldToFilter('product_id', $productId)
             ->getFirstItem();
-
         $this->setData(
             [
-                'quote_id' => $quote->getId(),
+                'quote_id' => $quoteId,
                 'product_id' => $productId,
                 'item_id' => $itemId,
                 'qty' => $qty

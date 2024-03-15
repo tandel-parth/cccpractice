@@ -1,7 +1,6 @@
 <?php
 class Core_Block_Template extends Core_Block_Abstract
 {
-    public $template;
     protected $_child = [];
     public function toHtml()
     {
@@ -38,9 +37,6 @@ class Core_Block_Template extends Core_Block_Abstract
         }
         return $html;
     }
-    public function getRequest()
-    {
-        return Mage::getModel('core/request');
-    }
+    
 
 }

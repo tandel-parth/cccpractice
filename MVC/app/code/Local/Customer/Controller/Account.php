@@ -69,9 +69,14 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             if($count){
                 
                 Mage::getSingleton("core/session")->set("logged_in_customer_id",$customerId);
-                print_r($_SESSION);
+                // print_r($_SESSION);
                 // die();
-                $this->setRedirect('customer/account/dashboard');
+                $checkout = Mage::getSingleton("core/session")->get("checkout");
+                if($checkout ){
+                    $this->setRedirect('cart/checkout/index');
+                }else{
+                    $this->setRedirect('customer/account/dashboard');
+                }
             }else{
                 echo '<script>alert("Dofa password to sarkho nakh!!!!!")</script>';
                 echo "<script>location.href='" . Mage::getBaseUrl() . '/customer/account/login' . "'</script>";

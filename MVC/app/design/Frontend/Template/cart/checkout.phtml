@@ -1,0 +1,167 @@
+<div class="checkoutContainer">
+    <div class="line-vertical"></div>
+    <div class=" small-container cart-page">
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+
+            <?php
+            $subTotal = 0;
+            foreach ($this->getItemList()->getData() as $item) {
+                $productList = $this->getProductList($item->getProductId());
+                foreach ($productList->getData() as $product) {
+                    ?>
+
+                    <tr>
+                        <td>
+                            <div class="cart-info">
+                                <img src="<?php echo Mage::getImagePath($product->getImageLink()) ?>">
+                                <div>
+                                    <p>
+                                        <?php echo $product->getName() ?>
+                                    </p>
+                                    <small>
+                                        <?php echo "Price: ₹" . $product->getPrice() ?>
+                                    </small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="number" name="upd_cart[qty]" value="<?php echo $item->getQty() ?>" min="0" readonly>
+                        </td>
+                        <td>
+                            <?php echo "₹ " . $item->getRowTotal() ?>
+                        </td>
+                    </tr>
+                    <?php
+
+                }
+                $subTotal += $item->getRowTotal();
+            }
+            ?>
+        </table>
+        <div class="total-price">
+            <table>
+                <tr>
+                    <td>Total</td>
+                    <td>
+                        <?php echo "₹ " . $subTotal ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tax</td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Final Total</td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="line-vertical"></div>
+    <div class="form-Container">
+        <div class="title">Details</div>
+        <div class="content">
+            <form action="<?php echo $this->getUrl('cart/checkout/save') ?>" method="post">
+                <div class="user-details">
+                    <input type="hidden" placeholder="Enter Product ID" id="product_id"
+                        name="checkout_customer[quote_customer_id]" value="">
+
+                    <input type="hidden" placeholder="Enter Product ID" id="product_id"
+                        name="checkout_customer[quote_id]" value="">
+
+                    <input type="hidden" placeholder="Enter Product ID" id="product_id"
+                        name="checkout_customer[customer_id]" value="">
+
+                    <div class="input-box">
+                        <span class="details" for="email">Email</span>
+                        <input type="email" placeholder="Enter Email" id="email" name="checkout_customer[email]"
+                            value="" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details" for="billing_address">Billing Address</span>
+                        <input type="text" placeholder="Enter Billing Address" id="billing_address"
+                            name="checkout_customer[billing_address]" value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="billing_city">Billing City</span>
+                        <input type="text" placeholder="Enter Billing City" id="billing_city"
+                            name="checkout_customer[billing_city]" value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="billing_region">Billing Region</span>
+                        <input type="text" placeholder="Enter Billing Region" id="billing_region"
+                            name="checkout_customer[billing_region]" value="" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details" for="billing_country">Billing Country</span>
+                        <input type="text" placeholder="Enter Billing Country" id="billing_country"
+                            name="checkout_customer[billing_country]" value="" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details" for="billing_phone">Billing Phone Nubmer</span>
+                        <input type="number" placeholder="Enter Billing Phone Nubmer" id="billing_phone"
+                            name="checkout_customer[billing_phone]" value="" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details" for="shipping_address">Shipping Address</span>
+                        <input type="text" placeholder="Enter Shipping Address" id="shipping_address"
+                            name="checkout_customer[shipping_address]" value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="shipping_city">Shipping City</span>
+                        <input type="text" placeholder="Enter Shipping City" id="shipping_city"
+                            name="checkout_customer[shipping_city]" value="" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details" for="shipping_region">Shipping Region</span>
+                        <input type="text" placeholder="Enter Shipping Region" id="shipping_region"
+                            name="checkout_customer[shipping_region]" value="" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details" for="shipping_country">Shipping Country</span>
+                        <input type="text" placeholder="Enter Shipping Country" id="shipping_country"
+                            name="checkout_customer[shipping_country]" value="" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details" for="shipping_phone">Shipping Phone Nubmer</span>
+                        <input type="number" placeholder="Enter Shipping Phone Nubmer" id="shipping_phone"
+                            name="checkout_customer[shipping_phone]" value="" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details" for="payment_method">Payment Mathod</span>
+                        <select id="payment_method" name="payment[payment_method]" class="input-box" required>
+                            <option value="" hidden>---select---</option>
+                            <option value="Cod">Cash on Delivery (COD)</option>
+                            <option value="creditcard">Credit Card</option>
+                            <option value="Upi">UPI</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <span class="details" for="shipping_method">Shipping Mathod</span>
+                        <select id="shipping_method" name="shipping[shipping_method]" class="input-box" required>
+                            <option value="" hidden>---select---</option>
+                            <option value="Exprase">Exprase</option>
+                            <option value="Frade">Frade</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="line-vertical"></div>
+</div>

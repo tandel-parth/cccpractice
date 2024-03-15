@@ -5,9 +5,6 @@ class Core_Model_Abstract
     {
         $this->init();
     }
-    public function init()
-    {
-    }
     protected $_data = [];
     protected $_resourceClass = '';
     protected $_collectionClass = '';
@@ -28,7 +25,6 @@ class Core_Model_Abstract
     }
     public function getId()
     {
-
         return (isset($this->_data[$this->getResource()->getPrimaryKey()]))
          ? $this->_data[$this->getResource()->getPrimaryKey()]
          : 0 ;
@@ -89,8 +85,12 @@ class Core_Model_Abstract
         $this->_data[$key] = $value;
         return $this;
     }
-    public function removeData($key = null)
+    public function removeData($key)
     {
+        if (isset($this->_data[$key])) {
+            unset($this->_data[$key]);
+        }
+        return $this;
     }
 
     protected function _beforeSave() {
