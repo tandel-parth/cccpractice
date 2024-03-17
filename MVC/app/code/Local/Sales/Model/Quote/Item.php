@@ -77,11 +77,19 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
         ->addFieldToFilter('quote_id', $quoteId)
         ->addFieldToFilter('item_id', $itemId)
         ->getFirstItem();
-
+        
         if ($item) {
             $this->setId($item->getId());
         }
+
         $this->delete();
+
+        $cartData = Mage::getBlock('cart/cart')->getItemList();
+        
+        if (empty($cartData)) {
+            echo 123;
+            Mage::getSingleton('core/session')->remove('quote_id');
+        }
 
         return $this;
     }

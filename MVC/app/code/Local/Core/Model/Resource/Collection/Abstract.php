@@ -11,7 +11,8 @@ class Core_Model_Resource_Collection_Abstract
         $this->_resource = $resource;
         return $this;
     }
-    public function setModelClass($model){
+    public function setModelClass($model)
+    {
         $this->_model = $model;
         return $this;
     }
@@ -28,7 +29,7 @@ class Core_Model_Resource_Collection_Abstract
     public function load()
     {
         $sql = "SELECT * FROM {$this->_select['FROM']}";
-        if (isset($this->_select["WHERE"])) {
+        if (isset ($this->_select["WHERE"])) {
             $whereCondition = [];
             foreach ($this->_select["WHERE"] as $column => $value) {
                 foreach ($value as $_value) {
@@ -69,8 +70,9 @@ class Core_Model_Resource_Collection_Abstract
         $this->load();
         return $this->_data;
     }
-    public function getFirstItem() {
+    public function getFirstItem()
+    {
         $this->load();
-        return (isset($this->_data[0])) ? $this->_data[0] : null;
+        return (isset ($this->_data[0])) ? $this->_data[0] : null;
     }
 }

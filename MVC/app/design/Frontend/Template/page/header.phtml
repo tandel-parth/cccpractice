@@ -1,67 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <div class="container">
+        <a class="navbar-brand" href="<?php echo $this->getUrl('') ?>">Furni<span>.</span></a>
 
-<body>
-    <div class=box-header>
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                    <img src="<?php echo Mage::getImagesUrl('logo.png') ?>" width="125px">
-                </div>
-                <nav>
-                    <ul id="MenuItems">
-                        <li>
-                            <a href="<?php echo $this->getUrl('') ?>">
-                                Home
-                            </a>
-                        </li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
+            aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                        <li>
-                            <a href="<?php echo $this->getUrl('admin/catalog_product/form/') ?>">
-                                Product Form
-                            </a>
-                        </li>
+        <div class="collapse navbar-collapse" id="navbarsFurni">
+            <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo $this->getUrl('') ?>">Home</a>
+                </li>
+                <li><a class="nav-link" href="<?php echo $this->getUrl('catalog/product/view') ?>">Shop</a></li>
+                <li><a class="nav-link" href="">About us</a></li>
+                <li><a class="nav-link" href="">Services</a></li>
+                <li><a class="nav-link" href="">Blog</a></li>
+                <li><a class="nav-link" href="">Contact us</a></li>
+            </ul>
 
-                        <li>
-                            <a href="<?php echo $this->getUrl('admin/catalog_product/list/') ?>">
-                                Product List
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="<?php echo $this->getUrl('admin/catalog_category/form/') ?>">
-                                Category Form
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="<?php echo $this->getUrl('admin/catalog_category/list/') ?>">
-                                Category List
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="<?php echo $this->getUrl('customer/account/register/') ?>">
-                                Customer Register
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="<?php echo $this->getUrl('customer/account/login/') ?>">
-                                Customer Login
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                <li>
+                    <?php if (empty($this->getCustomerId()) ) { ?>
+                        <a class="nav-link" href="<?php echo $this->getUrl('customer/account/login') ?>"><img
+                                src="<?php echo Mage::getImagePath('images/user.svg') ?>"></a>
+                    <?php } else { ?>
+                        <a class="nav-link" href="<?php echo $this->getUrl('customer/account/logout') ?>"><img
+                                src="<?php echo Mage::getImagePath('images/logout.png') ?>"></a>
+                    <?php } ?>
+                </li>
+                <li><a class="nav-link" href="<?php echo $this->getUrl('cart/index/cart') ?>"><img
+                            src="<?php echo Mage::getImagePath('images/cart.svg') ?>"></a></li>
+            </ul>
         </div>
     </div>
-</body>
 
-</html>
+</nav>

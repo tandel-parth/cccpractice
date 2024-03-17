@@ -11,7 +11,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
     public function initQuote()
     {
         $quoteId = Mage::getSingleton("core/session")->get("quote_id");
-        if (!empty($quoteId)) {
+        if (!empty ($quoteId)) {
             $this->load($quoteId);
         }
         if (!$this->getId()) {
@@ -22,14 +22,13 @@ class Sales_Model_Quote extends Core_Model_Abstract
             $quoteId = $quote->getId();
             $this->load($quoteId);
         }
-        // echo $quoteId;
         return $this;
 
     }
 
     public function getItemCollection()
     {
-        return Mage::getModel('sales/quote_item')->getCollection() ///
+        return Mage::getModel('sales/quote_item')->getCollection() 
             ->addFieldToFilter('quote_id', $this->getId());
     }
 
@@ -74,54 +73,130 @@ class Sales_Model_Quote extends Core_Model_Abstract
         }
         $this->save();
     }
-    public function saveAddress($request)
+    public function saveAddress($address)
     {
-        $quoteCustomerId = Mage::getSingleton('core/session')->get('quote_customer_id', 0);
-        if (!$quoteCustomerId) {
-            $result = Mage::getModel('sales/quote_customer');
-            $result->setdata($request)->save();
-            Mage::getSingleton('core/session')->set('quote_customer_id', $result->getId());
-            if ($result) {
-                echo "<script>alert('data inserted successfully!')</script>";
+        $this->initQuote();
+        if ($this->getId()) {
+            $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
+            $addressData = Mage::getModel('customer/customer')->getCollection()->addFieldToFilter('customer_id', $customerId)->getData();
+            $email = "";
+            foreach ($addressData as $addValue){
+                $gmail = $addValue->getCustomerEmail();
             }
-        } else {
-            Mage::getModel('sales/quote_customer')->setdata($request)
-                ->addData("quote_customer_id",$quoteCustomerId)
+            Mage::getModel('sales/quote_customer')
+                ->setData($address)
+                ->addData('quote_id', $this->getId())
+                ->addData('customer_id', $customerId)
+                ->addData('email', $gmail)
                 ->save();
         }
     }
-    public function savePayment($request)
+    public function savePayment($payment)
     {
-        $paymentId = Mage::getSingleton('core/session')->get('payment_id');
-        if (!$paymentId) {
-            $result = Mage::getModel('sales/quote_payment');
-            $result->setdata($request)->save();
-            Mage::getSingleton('core/session')->set('payment_id', $result->getId());
-            if ($result) {
-                echo "<script>alert('data inserted successfully!')</script>";
-            }
-        } else {
-            Mage::getModel('sales/quote_payment')->setdata($request)
-                ->addData("payment_id",$paymentId)
+        $this->initQuote();
+        if ($this->getId()) {
+            return Mage::getModel('sales/quote_payment')
+                ->setData($payment)
+                ->addData('quote_id', $this->getId())
                 ->save();
         }
     }
 
-    public function saveShipping($request)
+    public function saveShipping($shipping)
     {
-        $shippingId = Mage::getSingleton('core/session')->get('shipping_id', 0);
-        if (!$shippingId) {
-            $result = Mage::getModel('sales/quote_shipping');
-            $result->setdata($request)->save();
-            Mage::getSingleton('core/session')->set('shipping_id', $result->getId());
-            if ($result) {
-                echo "<script>alert('data inserted successfully!')</script>";
-            }
-        } else {
-            Mage::getModel('sales/quote_shipping')->setdata($request)
-                ->addData("shipping_id",$shippingId)
+        $this->initQuote();
+        if ($this->getId()) {
+            return Mage::getModel('sales/quote_shipping')
+                ->setData($shipping)
+                ->addData('quote_id', $this->getId())
                 ->save();
         }
     }
+    public function getConvertQuoteToOrder()
+    {
+        $this->initQuote();
+        if ($this->getId()) {
+            $order = $this->convertQuoteToOrder();
+            $orderId = $order->getId();
+            $address = $this->convertQuoteAddToOrderAdd($orderId);
+            $item = $this->convertItemCollection($orderId);
+            $payment = $this->convertPayment($orderId);
+            $shipping = $this->convertShipping($orderId);
+            $this->addData('order_id', $order->getId())->save();
+            $this->addData('payment_id', $payment->getId())->save();
+            $this->addData('shipping_id', $shipping->getId())->save();
+        }
+    }
+    public function convertQuoteToOrder()
+    {
+        return Mage::getModel('sales/order')
+            ->setData($this->getData())
+            ->removeData('quote_id')
+            ->removeData('order_id')
+            ->removeData('payment_id')
+            ->removeData('shipping_id')
+            ->save();
+
+    }
+    public function convertQuoteAddToOrderAdd($orderId)
+    {
+
+        if ($this->getId()) {
+
+            $data = Mage::getModel('sales/quote_customer')
+                ->getCollection()
+                ->addFieldToFilter('quote_id', $this->getId())
+                ->getFirstItem();
+            return Mage::getModel('sales/order_customer')
+                ->setData($data->getData())
+                ->removeData('quote_customer_id')
+                ->removeData('quote_id')
+                ->addData('order_id', $orderId)
+                ->save();
+        }
+    }
+    public function convertItemCollection($orderId)
+    {
+        foreach ($this->getItemCollection()->getData() as $_item) {
+            Mage::getModel('sales/order_item')
+                ->setData($_item->getData())
+                ->removeData('item_id')
+                ->removeData('quote_id')
+                ->addData('order_id', $orderId)
+                ->save();
+        }
+        return $this;
+    }
+    public function convertPayment($orderId)
+    {
+        if ($this->getId()) {
+            $data = Mage::getModel('sales/quote_payment')
+                ->getCollection()
+                ->addFieldToFilter('quote_id', $this->getId())
+                ->getFirstItem();
+            return Mage::getModel('sales/order_payment')
+                ->setData($data->getData())
+                ->removeData('payment_id')
+                ->removeData('quote_id')
+                ->addData('order_id', $orderId)
+                ->save();
+        }
+    }
+
+    public function convertShipping($orderId)
+    {
+        if ($this->getId()) {
+            $data = Mage::getModel('sales/quote_shipping')
+                ->getCollection()
+                ->addFieldToFilter('quote_id', $this->getId())
+                ->getFirstItem();
+            return Mage::getModel('sales/order_shipping')
+                ->setData($data->getData())
+                ->removeData('shipping_id')
+                ->removeData('quote_id')
+                ->addData('order_id', $orderId)
+                ->save();
+        }
+    }
+
 }
-

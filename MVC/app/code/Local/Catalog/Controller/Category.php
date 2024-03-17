@@ -3,11 +3,11 @@ class Catalog_Controller_Category extends Core_Controller_Front_Action {
 
     public function viewAction()
     {
-        $this->includeCss("view.css");
+        // $this->includeCss("views.css");
         $layout = $this->getLayout();
         $child = $layout->getchild('content');
-        $productForm = $layout->createBlock('catalog/admin_category_list');
-        $child->addChild('list',$productForm);
+        $categoryView = $layout->createBlock('catalog/category_view');
+        $child->addChild('category_view',$categoryView);
         $layout->toHtml();
     }
 }

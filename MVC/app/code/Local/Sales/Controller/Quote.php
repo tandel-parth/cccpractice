@@ -25,4 +25,22 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
             ->updateProduct($request);
             $this->setRedirect('cart/index/cart');
     }
+
+    public function saveAction()
+    {
+        $address = $this->getRequest()->getparams("checkout_customer");
+        Mage::getSingleton('sales/quote')->saveAddress($address);
+
+        $payment = $this->getRequest()->getparams("payment");
+        Mage::getSingleton('sales/quote')->savePayment($payment);
+
+        $shipping = $this->getRequest()->getparams("shipping");
+        Mage::getSingleton('sales/quote')->saveShipping($shipping);
+
+        Mage::getSingleton('sales/quote')->getConvertQuoteToOrder();
+
+        Mage::getSingleton('core/session')->remove('quote_id');
+
+        $this->setRedirect("");
+    }
 }

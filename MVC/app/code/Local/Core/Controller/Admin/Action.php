@@ -4,7 +4,7 @@ class Core_Controller_Admin_Action extends Core_Controller_Front_Action
     protected $_allowedActions = [];
     public function init()
     {
-        $this->getLayout()->setTemplate("core/admin.phtml");
+        $this->getLayout()->removeChild("header")->removeChild("footer");
         $this->getRequest()->getActionName();
         if (
             !in_array($this->getRequest()->getActionName(), $this->_allowedActions) &&

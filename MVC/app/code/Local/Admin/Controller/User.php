@@ -48,6 +48,7 @@ class Admin_Controller_User extends Core_Controller_Admin_Action{
         $sessionId = Mage::getSingleton("core/session")->get("logged_in_admin_user_id");
         if($sessionId){
             $layout = $this->getLayout();
+            $layout->removeChild('header')->removeChild('footer');
             $this->includeCss('dashboard.css');
             $child = $layout->getChild('content');
             $login = $layout->createBlock('catalog/admin_account_dashboard');

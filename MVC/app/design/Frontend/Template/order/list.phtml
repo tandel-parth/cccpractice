@@ -1,0 +1,48 @@
+<div class="box">
+    <div class="container-list">
+        <div class="add">
+            <div class="title">Order List</div>
+        </div>
+        <table>
+            <tr>
+            <th width='200vh'>Item Id</th>
+                <th width='200vh'>Order Id</th>
+                <th width='200vh'>Product Id</th>
+                <th width='200vh'>Price</th>
+                <th width='200vh'>Quantity</th>
+                <th width='200vh'>Row Total</th>
+            </tr>
+            <?php foreach ($this->getCustomerData() as $data){ 
+                $listData = $this->getItemList($data->getOrderId());
+                foreach ($listData as $list){ 
+                ?>
+
+                <tr>
+                <td class='column'>
+                        <?php echo ($list->getItemId());
+                        ?>
+                    </td>
+                    <td class='column'>
+                        <?php echo ($list->getOrderId());
+                        ?>
+                    </td>
+                    <td class='column'>
+                        <?php echo ($list->getProductId()); ?>
+                    </td>
+                    <td class='column'>
+                        <?php echo "₹".($list->getPrice()); ?>
+                    </td>
+                    <td class='column'>
+                        <?php echo ($list->getQty()); ?>
+                    </td>
+                    <td class='column'>
+                        <?php echo "₹".($list->getRowTotal()); ?>
+                    </td>
+                </tr>
+            <?php }
+        }?>
+        </table>
+    </div>
+    </body>
+
+    </html>

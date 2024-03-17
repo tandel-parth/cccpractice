@@ -2,8 +2,8 @@
 
 class Mage
 {
-    private static $baseDir = "C:/xampp/htdocs/CyberCom/MVC"; 
-    private static $baseUrl = "http://localhost/cybercom/MVC"; 
+    private static $baseDir = "C:/xampp/htdocs/MVC"; 
+    private static $baseUrl = "http://localhost/MVC"; 
     private static $_singleTon = NULL; 
     public static function init()
     {
@@ -65,7 +65,7 @@ class Mage
     }
     public static function getImagePath($filePath){
         if($filePath){
-           return self::$baseUrl.'/media/banner/' . $filePath;
+           return self::$baseUrl.'/media/' . $filePath;
         }
         
      }

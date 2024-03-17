@@ -1,7 +1,6 @@
 <?php
 class Customer_Controller_Account extends Core_Controller_Front_Action
 {
-    // protected $_allowedActions = ['login', 'register'];
     protected $_loginRequiredActions = [
         'dashboard'
     ];
@@ -69,13 +68,11 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             if($count){
                 
                 Mage::getSingleton("core/session")->set("logged_in_customer_id",$customerId);
-                // print_r($_SESSION);
-                // die();
                 $checkout = Mage::getSingleton("core/session")->get("checkout");
                 if($checkout ){
                     $this->setRedirect('cart/checkout/index');
                 }else{
-                    $this->setRedirect('customer/account/dashboard');
+                    $this->setRedirect('');
                 }
             }else{
                 echo '<script>alert("Dofa password to sarkho nakh!!!!!")</script>';
@@ -92,16 +89,20 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             $layout->toHtml();
         }
     }
-    public function dashboardAction(){
-        $sessionId = Mage::getSingleton("core/session")->get("logged_in_customer_id");
-        if($sessionId){
-            $layout = $this->getLayout();
-            $this->includeCss('dashboard.css');
-            $child = $layout->getChild('content');
-            $login = $layout->createBlock('customer/dashboard');
-            $child->addChild('login', $login);
-            $layout->toHtml();
+    // public function dashboardAction(){
+    //     $sessionId = Mage::getSingleton("core/session")->get("logged_in_customer_id");
+    //     if($sessionId){
+    //         $layout = $this->getLayout();
+    //         $this->includeCss('dashboard.css');
+    //         $child = $layout->getChild('content');
+    //         $login = $layout->createBlock('customer/dashboard');
+    //         $child->addChild('login', $login);
+    //         $layout->toHtml();
          
-        }
+    //     }
+    //  }
+     public function logoutAction(){
+        Mage::getSingleton("core/session")->remove("logged_in_customer_id");
+        $this->setRedirect('');
      }
 }

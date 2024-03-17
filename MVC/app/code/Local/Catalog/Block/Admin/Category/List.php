@@ -2,11 +2,7 @@
 
 class Catalog_Block_Admin_Category_list extends Core_Block_Template{
     public function __construct(){
-        if($this->getRequest()->getQueryData('id')){
-            $this->setTemplate("catalog/admin/product/view.phtml"); //design
-      }else{
-          $this->setTemplate("catalog/admin/category/list.phtml"); //design
-      }
+          $this->setTemplate("catalog/admin/category/list.phtml");
     }
     public function showList() {
         $findQues = $this->getRequest()->getQueryData('id');
