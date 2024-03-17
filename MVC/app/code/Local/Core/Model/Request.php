@@ -49,7 +49,7 @@ class Core_Model_Request
     public function getRequestUrl()
     {
         $request_uri = $_SERVER['REQUEST_URI'];
-        $request_uri = str_replace('/MVC/', "", $request_uri);
+        $request_uri = str_replace('/cybercom/MVC/', "", $request_uri);
         return $request_uri;
     }
 
