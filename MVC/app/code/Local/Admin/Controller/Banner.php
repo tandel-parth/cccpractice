@@ -46,7 +46,7 @@ class Admin_Controller_Banner extends Core_Controller_Admin_Action{
 
     public function listAction(){
         $layout = $this->getLayout();
-        $this->includeCss('list.css');
+        $this->includeCss('lists.css');
         $child = $layout->getchild('content'); 
         $productForm = $layout->createBlock('banner/admin_list');
         $child->addchild('list', $productForm);

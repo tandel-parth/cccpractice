@@ -40,8 +40,14 @@
                         $tax = 0;
                         $grandTotal = 0;
                         foreach ($this->getItemList() as $item) {
-                            $productList = $this->getProductList($item->getProductId());
-                            foreach ($productList as $product) {
+                            // echo "<pre>";
+                            // print_r(($item->getProduct()->getName()));
+                            // echo "<br>";
+                            // print_r(($item->getProduct()->getPrice()));
+                            // die();
+                            $product= $item->getProduct();
+                            // $productList = $this->getProductList($item->getProductId());
+                            // foreach ($productList as $product) {
                                 ?>
                                 <tr>
                                     <td class="product-thumbnail">
@@ -88,7 +94,7 @@
                                                 class="img-fluid"></a></td>
                                 </tr>
                                 <?php
-                            }
+                            
                             $subTotal += $item->getRowTotal();
                             if ($taxnumber) {
                                 $tax = round($subTotal / $taxnumber, 2);

@@ -11,8 +11,14 @@ class Sales_Model_Order extends Core_Model_Abstract
     {
         $orderNumberConstant = 1000;
         $number = $this->getCollection()->getData();
-        $arr = $number[sizeof($number)-1]->_data;
-        $n = $arr["order_id"];
+        if(sizeof($number))
+        {
+            $arr = $number[sizeof($number)-1]->_data;
+            $n = $arr["order_id"];
+        }else{
+        $n = 0;
+
+        }
         $orderNumber = $orderNumberConstant + $n;
         $this->addData('order_number', "CCC-".$orderNumber);
     }

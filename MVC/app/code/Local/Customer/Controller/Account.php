@@ -5,18 +5,19 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         'dashboard'
     ];
 
-    public function init(){
+    public function init()
+    {
         $action = $this->getRequest()->getActionName();
-        if( in_array($action, $this->_loginRequiredActions) ) {
+        if (in_array($action, $this->_loginRequiredActions)) {
             $customerId = Mage::getSingleton('core/session')
                 ->get('logged_in_customer_id');
-            if( !$customerId ) {
+            if (!$customerId) {
                 $this->setRedirect('customer/account/login');
-                exit() ;
+                exit();
             }
         }
-        
-        
+
+
     }
     public function registerAction()
     {
@@ -52,34 +53,35 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     }
     public function loginAction()
     {
-        if(isset($_POST['Submit'])) {
+        if (isset ($_POST['Submit'])) {
             $data = $this->getRequest()->getParams("customer");
-            $model= Mage::getModel("customer/customer");
-            $result =   $model->getCollection()
-            ->addFieldToFilter("customer_email", $data["customer_email"])
-            ->addFieldToFilter("password", $data["password"]);;
-            $count=0;
-            $customerId =0;
-            foreach($result->getData() as $row){
+            $model = Mage::getModel("customer/customer");
+            $result = $model->getCollection()
+                ->addFieldToFilter("customer_email", $data["customer_email"])
+                ->addFieldToFilter("password", $data["password"]);
+            $count = 0;
+            $customerId = 0;
+            foreach ($result->getData() as $row) {
                 $count++;
                 $customerId = $row->getCustomerId();
-                
+
             }
-            if($count){
-                
-                Mage::getSingleton("core/session")->set("logged_in_customer_id",$customerId);
+            if ($count) {
+
+                Mage::getSingleton("core/session")->set("logged_in_customer_id", $customerId);
+                Mage::getModel('sales/quote')->initQuote();
                 $checkout = Mage::getSingleton("core/session")->get("checkout");
-                if($checkout ){
+                if ($checkout) {
                     $this->setRedirect('cart/checkout/index');
-                }else{
+                } else {
                     $this->setRedirect('');
                 }
-            }else{
+            } else {
                 echo '<script>alert("Dofa password to sarkho nakh!!!!!")</script>';
                 echo "<script>location.href='" . Mage::getBaseUrl() . '/customer/account/login' . "'</script>";
 
             }
-        }else{
+        } else {
             $layout = $this->getLayout();
             $layout->removeChild('header')->removeChild('footer');
             $this->includeCss('form.css');
@@ -98,11 +100,13 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     //         $login = $layout->createBlock('customer/dashboard');
     //         $child->addChild('login', $login);
     //         $layout->toHtml();
-         
+
     //     }
     //  }
-     public function logoutAction(){
+    public function logoutAction()
+    {
         Mage::getSingleton("core/session")->remove("logged_in_customer_id");
+        Mage::getSingleton("core/session")->remove("quote_id");
         $this->setRedirect('');
-     }
+    }
 }

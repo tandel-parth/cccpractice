@@ -12,5 +12,5 @@ class Catalog_Model_Product extends Core_Model_Abstract{
         if(isset($this->_data["status"])){
             return $mapping[$this->_data['status']];
         }
-    }    
+    }  
 }

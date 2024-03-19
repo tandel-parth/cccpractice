@@ -1,43 +1,38 @@
-<div class="box">
-    <div class="container-list">
-        <div class="add">
-            <div class="title">Order List</div>
+<div class="container relative">
+    <?php foreach ($this->orderIdd() as $_orderId) { ?>
+        <div class="content">
+            <div class="boxes">Order Id:
+                <?php echo $_orderId->getId() ?>
+            </div>
+            <?php foreach ($this->items($_orderId->getId()) as $_item) { ?>
+                <div class="boxes">
+                    <div class="data">
+                        <div class="product-title">
+                            <?php echo $_item->getProductName() ?>
+                            <div class="product-image">
+                                <img src="<?php echo Mage::getImagePath("/banner/" . $this->product($_item->getProductId())->getImageLink()); ?>"
+                                    alt="Product Image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data">
+                        <div class="order-info">
+                            <div class="order-no">Order Number:
+                                <?php echo $_orderId->getOrderNumber() ?>
+                            </div>
+                            <div class="order-qty">Quantity:
+                                <?php echo $_item->getQty() ?>
+                            </div>
+                            <div class="order-price">Price: $
+                                <?php echo $this->product($_item->getProductId())->getPrice(); ?>
+                            </div>
+                            <div class="order-total">Total: $
+                                <?php echo $_orderId->getGrandTotal() ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
-        <table>
-            <tr>
-                <th width='200vh'>Item Id</th>
-                <th width='200vh'>Order Id</th>
-                <th width='200vh'>Product Id</th>
-                <th width='200vh'>Price</th>
-                <th width='200vh'>Quantity</th>
-                <th width='200vh'>Row Total</th>
-            </tr>
-            <?php foreach ($this->getListCollection()->getData() as $list): ?>
-                <tr>
-                <td class='column'>
-                        <?php echo ($list->getItemId());
-                        ?>
-                    </td>
-                    <td class='column'>
-                        <?php echo ($list->getOrderId());
-                        ?>
-                    </td>
-                    <td class='column'>
-                        <?php echo ($list->getProductId()); ?>
-                    </td>
-                    <td class='column'>
-                        <?php echo "₹".($list->getPrice()); ?>
-                    </td>
-                    <td class='column'>
-                        <?php echo ($list->getQty()); ?>
-                    </td>
-                    <td class='column'>
-                        <?php echo "₹".($list->getRowTotal()); ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-    </div>
-    </body>
-
-    </html>
+    <?php } ?>
+</div>

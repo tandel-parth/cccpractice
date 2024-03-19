@@ -4,7 +4,6 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
 {
     public function addAction()
     {
-        echo "<pre>";
         $request = $this->getRequest()->getParams('cart');
         $quote = Mage::getSingleton("sales/quote");
         $quote->addProduct($request);
@@ -42,5 +41,13 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
         Mage::getSingleton('core/session')->remove('quote_id');
 
         $this->setRedirect("");
+    }
+    public function listAction(){
+        $layout = $this->getLayout();
+        $this->includeCss('lists.css');
+        $child = $layout->getchild('content'); 
+        $orderList = $layout->createBlock('sales/order_list');
+        $child->addchild('list', $orderList);
+        $layout->toHtml();
     }
 }

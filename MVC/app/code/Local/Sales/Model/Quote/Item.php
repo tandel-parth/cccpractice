@@ -2,7 +2,7 @@
 
 class Sales_Model_Quote_Item extends Core_Model_Abstract
 {
-
+    protected $_product = "";
     public function init()
     {
         $this->_resourceClass = 'Sales_Model_Resource_Quote_Item';
@@ -11,7 +11,14 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
 
     public function getProduct()
     {
-        return Mage::getModel('catalog/product')->load($this->getProductId());
+        // echo 11;
+        if($this->_product){
+            return $this->_product;
+        }
+        // echo 22;
+        $this->_product =  Mage::getModel('catalog/product')->load($this->getProductId());
+
+        return $this->_product;
     }
 
     protected function _beforeSave()

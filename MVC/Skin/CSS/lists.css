@@ -122,3 +122,28 @@ th {
     border-collapse: collapse;
     align-items: center;
 }
+
+
+/*  Order List  */
+
+.content{
+    width: 100%;
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    margin: 50px 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+.boxes{
+    display: flex;
+    padding-bottom: 25px;
+    width: 100%;
+}
+.data{
+    display: flex;
+    align-items: center;
+}
+.product-image img{
+    width: 200px;
+    padding-right: 50px;
+}
