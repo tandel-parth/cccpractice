@@ -30,16 +30,9 @@ class Core_Model_Resource_Abstract
                 $data, 
                 [$this->getPrimaryKey()=>$abstract->getId()]
             );
-            echo "<pre>";
-            echo $sql;
             $this->getAdapter()->update($sql);
-            echo 123;
         } else {
-            print_r($data);
             $sql = $this->insertSql($this->getTableName(),$data);
-            echo "<br>";
-            echo $sql;
-            echo "<br>";
             $id =  $this->getAdapter()->insert($sql);
             $abstract->setId($id);
         }

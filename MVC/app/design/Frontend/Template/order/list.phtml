@@ -3,7 +3,7 @@
         <div class="content">
             <div class="box-1">Order Id:
                 <?php echo $_orderId->getId() ?>
-                <form action="<?php echo $this->getUrl('sales/quote/cancel') ?>" method="post">
+                <form action="<?php echo $this->getUrl('sales/quote/cancelRequest') ?>" method="post">
                     <input type="hidden" name="history[order_id]" value="<?php echo $_orderId->getId() ?>">
                     <input type="hidden" name="history[to_status]" value="canceled Request">
                     <input type="hidden" name="history[action_by]" value="customer">

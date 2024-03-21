@@ -20,13 +20,8 @@ class Sales_Model_Order_History extends Core_Model_Abstract
         ->addData('status', $data['to_status'])
         ->save();
         
-        $historyData = Mage::getModel('sales/order_history')->getCollection()->addFieldToFilter('order_id', $data["order_id"])->getData();
-        if (sizeof($historyData)) {
-            $arr = $historyData[sizeof($historyData) - 1]->_data;
-            $toStatus = $arr["to_status"];
-        } else {
-            $toStatus = "";
-        }
+        $historyData = Mage::getModel("sales/order_history")->getCollection()->addFieldToFilter('order_id',$data['order_id'])->addOrderBy('history_id',"DESC")->getFirstItem();
+        $toStatus = $historyData->getToStatus();
         
         Mage::getModel('sales/order_history')
             ->setData($data)
@@ -37,14 +32,23 @@ class Sales_Model_Order_History extends Core_Model_Abstract
     public function cancelRequest($data){
         date_default_timezone_set('Asia/Kolkata');
         $submissionDate = date("Y-m-d");
-        $historyData = Mage::getModel('sales/order_history')->getCollection()->addFieldToFilter('order_id', $data["order_id"])->getData();
-        if (sizeof($historyData)) {
-            $arr = $historyData[sizeof($historyData) - 1]->_data;
-            $toStatus = $arr["to_status"];
-        } else {
-            $toStatus = "";
-        }
+        $historyData = Mage::getModel("sales/order_history")->getCollection()->addFieldToFilter('order_id',$data['order_id'])->addOrderBy('history_id',"DESC")->getFirstItem();
+        $toStatus = $historyData->getToStatus();
         
+        Mage::getModel('sales/order_history')
+            ->setData($data)
+            ->addData('date', $submissionDate)
+            ->addData('from_status', $toStatus)
+            ->save();
+    }
+    public function rejectedHistory($data){
+        date_default_timezone_set('Asia/Kolkata');
+        $submissionDate = date("Y-m-d");
+
+        $historyData = Mage::getModel("sales/order_history")->getCollection()->addFieldToFilter('order_id',$data['order_id'])->addOrderBy('history_id',"DESC")->getFirstItem();
+
+        $toStatus = $historyData->getToStatus();
+                
         Mage::getModel('sales/order_history')
             ->setData($data)
             ->addData('date', $submissionDate)

@@ -43,7 +43,7 @@
                                                 style="border-radius: 10px;">
                                                 <option value="" hidden>Select a country</option>
                                                 <?php
-                                                $histopry = ['pending', 'delivered','canceled','canceled Request'];
+                                                $histopry = ['pending', 'delivered', 'canceled', 'canceled Request'];
                                                 foreach ($histopry as $his) {
                                                     echo '<option value="' . $his . '"' . (($_orderId->getStatus() == $his) ? 'selected' : '') . '>' . $his . '</option>';
                                                 }
@@ -57,12 +57,29 @@
                                     </td>
 
                                 </form>
-                                <?php $history = $this->getHistory($_orderId->getId())?>
-                                <?php if($history->getToStatus()=='canceled Request'){?>
-                                <td>
-                                    
-                                </td>
-                                <?php }?>
+                                <?php $history = $this->getHistory($_orderId->getId()) ?>
+                                <?php if ($history->getToStatus() == 'canceled Request') { ?>
+                                    <td class="box-3">
+                                        <form action="<?php echo $this->getUrl('admin/order_history/save') ?>" method="post">
+                                            <input type="hidden" name="history[order_id]"
+                                                value="<?php echo $_orderId->getId() ?>">
+                                            <input type="hidden" name="history[to_status]" value="canceled">
+                                            <input type="hidden" name="history[action_by]" value="admin">
+                                            <button type="submit" name="submit" class="update"><img
+                                                    src="<?php echo Mage::getImagePath("banner/updated.png"); ?>" alt="Image"
+                                                    class="img-fluid"></button>
+                                        </form>
+                                        <form action="<?php echo $this->getUrl('admin/order_history/rejected/') ?>" method="post">
+                                            <input type="hidden" name="history[order_id]"
+                                                value="<?php echo $_orderId->getId() ?>">
+                                            <input type="hidden" name="history[to_status]" value="cancel_req_declined">
+                                            <input type="hidden" name="history[action_by]" value="admin">
+                                            <button type="submit" name="submit" class="update"><img
+                                                    src="<?php echo Mage::getImagePath("banner/remove.png"); ?>" alt="Image"
+                                                    class="img-fluid"></button>
+                                        </form>
+                                    </td>
+                                <?php } ?>
                             </tr>
                             <?php
                         }

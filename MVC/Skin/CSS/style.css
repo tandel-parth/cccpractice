@@ -26,10 +26,8 @@ body {
 }
 
 .remove{
+  border: none;
   width: 4vw;
-}
-.cancel{
-  
 }
 
 .shipping{

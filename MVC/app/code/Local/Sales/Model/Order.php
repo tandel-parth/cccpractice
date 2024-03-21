@@ -9,22 +9,22 @@ class Sales_Model_Order extends Core_Model_Abstract
     }
     protected function _beforeSave()
     {
-        if(!$this->getId()){
-            $orderNumber = $this->getLastOrderNumber();
-            $this->addData('order_number', $orderNumber);
-        }
+        $arr = $this->getData();
+        if (!array_key_exists("order_id",$arr)){
+        $orderNumber = $this->getLastOrderNumber();
+        $this->addData('order_number', $orderNumber);
+       }
     }
-    public function getLastOrderNumber(){
-        $orderNumberConstant = 1000;
-        $number = $this->getCollection()->getData();
-        if(sizeof($number))
-        {
-            $arr = $number[sizeof($number)-1]->_data;
-            $n = $arr["order_id"];
+    public function getLastOrderNumber()
+    {
+        $order = Mage::getModel("sales/order")->getCollection()->addOrderBy('order_id', "DESC")->getFirstItem();
+        if(!is_null($order)){
+            $n = $order->getOrderNumber();
+            $n = substr($n, 4);
         }else{
-        $n = 0;
-
+            $n=1000;
         }
-        return "CCC-".($orderNumberConstant + $n);
+
+        return "CCC-" . ($n + 1);
     }
 }

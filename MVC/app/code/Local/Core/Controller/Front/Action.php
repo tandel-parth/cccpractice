@@ -8,7 +8,7 @@ class Core_Controller_Front_Action
         $this->init();
         $_layout = $this->getLayout();
         $this->includeCss('bootstrap.min.css');
-        $this->includeCss('styles.css');
+        $this->includeCss('style.css');
         $this->includeCss('style.scss');
         $this->includeCss('tiny-slider.css');
         $this->includeJs('bootstrap.bundle.min.js');
