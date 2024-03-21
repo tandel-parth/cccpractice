@@ -39,7 +39,7 @@ class Brand_Controller_Index extends Core_Controller_Front_Action
    public function listAction()
    {
       $layout = $this->getLayout();
-      $this->includeCss('lists.css');
+      $this->includeCss('list.css');
       $child = $layout->getchild('content');
       $list = $layout->createBlock('Brand/list');
       $child->addChild('list', $list);

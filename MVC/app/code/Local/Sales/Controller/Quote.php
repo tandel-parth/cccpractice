@@ -44,10 +44,16 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
     }
     public function listAction(){
         $layout = $this->getLayout();
-        $this->includeCss('lists.css');
+        $this->includeCss('list.css');
         $child = $layout->getchild('content'); 
         $orderList = $layout->createBlock('sales/order_list');
         $child->addchild('list', $orderList);
         $layout->toHtml();
+    }
+    public function cancelAction(){
+        echo 123;
+        $data = $this->getRequest()->getParams('history'); 
+        Mage::getModel('sales/order_history')->cancelRequest($data);
+        print_r($data);
     }
 }

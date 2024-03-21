@@ -1,0 +1,67 @@
+<?php $history = $this->getHistory();?>
+<div class="untree_co-section">
+    <div class="container">
+        <form action="<?php //echo $this->getUrl('sales/quote/save')  ?>" method="post">
+            <div class="row ">
+                <div>
+                    <h2 class="h3 mb-3 text-black">Billing Details</h2>
+                    <div class="p-3 p-lg-5 border bg-white">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="history_id" class="text-black">History ID<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="history_id"
+                                    name="history[history_id]" placeholder="Enter History ID"
+                                    value="<?php echo $history->getHistoryId();?>" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="order_id" class="text-black">Order ID<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="order_id"
+                                    name="history[order_id]" placeholder="Enter Order ID"
+                                    value="<?php echo $history->getOrderId();?>" required>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <label for="from_status" class="text-black">From Status<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="from_status"
+                                    name="history[from_status]" placeholder="Enter From Status"
+                                    value="<?php echo $history->getFromStatus();?>" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="to_status" class="text-black">To Status<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="to_status"
+                                    name="history[to_status]" placeholder="Enter To Status"
+                                    value="<?php echo $history->getToStatus();?>" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="date" class="text-black">Date<span
+                                        class="text-danger">*</span></label>
+                                <input type="date" class="form-control" id="date"
+                                    name="history[date]" placeholder="Enter Date"
+                                    value="<?php echo $history->getDate();?>" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="action_by" class="text-black">Action By<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="action_by"
+                                    name="history[action_by]" placeholder="Action By"
+                                    value="<?php echo $history->getActionBy();?>" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="btn btn-black btn-lg py-3 btn-block" type="submit" name="submit"
+                                value="Place Order">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>

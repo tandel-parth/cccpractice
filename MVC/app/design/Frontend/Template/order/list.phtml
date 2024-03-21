@@ -1,12 +1,20 @@
 <div class="container relative">
     <?php foreach ($this->orderIdd() as $_orderId) { ?>
         <div class="content">
-            <div class="boxes">Order Id:
+            <div class="box-1">Order Id:
                 <?php echo $_orderId->getId() ?>
+                <form action="<?php echo $this->getUrl('sales/quote/cancel') ?>" method="post">
+                    <input type="hidden" name="history[order_id]" value="<?php echo $_orderId->getId() ?>">
+                    <input type="hidden" name="history[to_status]" value="canceled Request">
+                    <input type="hidden" name="history[action_by]" value="customer">
+                    <button type="submit" class="cancel">
+                        <img src="<?php echo Mage::getImagePath("banner/remove.png"); ?>" alt="Image"
+                            class="img-fluid"></button>
+                </form>
             </div>
             <?php foreach ($this->items($_orderId->getId()) as $_item) { ?>
 
-                <div class="boxes">
+                <div class="box-2">
                     <div class="data">
                         <div class="product-title">
                             <?php echo $_item->getProductName() ?>

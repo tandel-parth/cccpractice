@@ -9,6 +9,12 @@ class Sales_Model_Order extends Core_Model_Abstract
     }
     protected function _beforeSave()
     {
+        if(!$this->getId()){
+            $orderNumber = $this->getLastOrderNumber();
+            $this->addData('order_number', $orderNumber);
+        }
+    }
+    public function getLastOrderNumber(){
         $orderNumberConstant = 1000;
         $number = $this->getCollection()->getData();
         if(sizeof($number))
@@ -19,7 +25,6 @@ class Sales_Model_Order extends Core_Model_Abstract
         $n = 0;
 
         }
-        $orderNumber = $orderNumberConstant + $n;
-        $this->addData('order_number', "CCC-".$orderNumber);
+        return "CCC-".($orderNumberConstant + $n);
     }
 }

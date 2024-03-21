@@ -21,6 +21,14 @@ class Core_Model_Resource_Collection_Abstract
         $this->_select['FROM'] = $this->_resource->getTableName();
         return $this;
     }
+    public function addOrderBy($field, $direction = 'ASC')
+    {
+        $this->_select['ORDER BY'][] = array(
+            'field' => $field,
+            'direction' => strtoupper($direction)
+        );
+        return $this;
+    }
     public function addFieldToFilter($field, $value)
     {
         $this->_select['WHERE'][$field][] = $value;
@@ -60,6 +68,13 @@ class Core_Model_Resource_Collection_Abstract
             $sql .= " WHERE " . implode(" AND ", $whereCondition);
             // echo $sql;
             // die();
+        }
+        if(isset($this->_select['ORDER BY'])){
+            $orderBy = [];
+            foreach ($this->_select['ORDER BY'] as $order) {
+                $orderBy[] = "{$order['field']} {$order['direction']}";
+            }
+            $sql .= " ORDER BY " . implode(', ', $orderBy);
         }
         $result = $this->_resource->getAdapter()->fetchAll($sql);
         foreach ($result as $row) {

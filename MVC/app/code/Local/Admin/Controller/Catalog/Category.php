@@ -50,7 +50,7 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
     public function listAction()
     {
         $layout = $this->getLayout();
-        $this->includeCss('lists.css');
+        $this->includeCss('list.css');
         $child = $layout->getChild('content');
         $categoryList = $layout->createBlock('catalog/admin_category_list');
         $child->addChild('list', $categoryList);

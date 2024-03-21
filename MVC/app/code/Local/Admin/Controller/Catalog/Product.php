@@ -51,7 +51,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
     {
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
-        $this->includeCss('lists.css');
+        $this->includeCss('list.css');
         $productList = $layout->createBlock('catalog/admin_product_list');
         $child->addChild('list', $productList);
         $layout->toHtml();

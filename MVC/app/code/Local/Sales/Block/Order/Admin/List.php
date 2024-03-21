@@ -29,5 +29,8 @@ class Sales_Block_Order_Admin_List extends Core_Block_Template{
         ->load($Id);
         
     }
+    public function getHistory($orderId){
+        return Mage::getModel("sales/order_history")->getCollection()->addFieldToFilter('order_id',$orderId)->addOrderBy('history_id',"DESC")->getFirstItem();
+    }
 }
 ?>

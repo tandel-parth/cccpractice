@@ -30,8 +30,12 @@ class Core_Model_Resource_Abstract
                 $data, 
                 [$this->getPrimaryKey()=>$abstract->getId()]
             );
+            echo "<pre>";
+            echo $sql;
             $this->getAdapter()->update($sql);
+            echo 123;
         } else {
+            print_r($data);
             $sql = $this->insertSql($this->getTableName(),$data);
             echo "<br>";
             echo $sql;
@@ -45,11 +49,11 @@ class Core_Model_Resource_Abstract
     {
         $columns = $where_cond = [];
         foreach ($data as $col => $val) {
-            $columns[] = "`$col` = '$val'";
+            $columns[] = '`'.$col.'` = "'.$val.'"';
         }
         ;
         foreach ($where as $col => $val) {
-            $where_cond[] = "`$col` = '$val'";
+            $where_cond[] = '`'.$col.'` = "'.$val.'"';
         }
         ;
         $columns = implode(", ", $columns);
@@ -66,7 +70,7 @@ class Core_Model_Resource_Abstract
         $columns = $values = [];
         foreach ($data as $col => $val) {
             $columns[] = "`$col`";
-            $values[] = "'" . addslashes($val) . "'";
+            $values[] = "'" .$val . "'";
         }
         $columns = implode(", ", $columns);
         $values = implode(", ", $values);

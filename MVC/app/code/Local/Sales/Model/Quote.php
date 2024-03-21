@@ -145,6 +145,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if ($this->getId()) {
             $order = $this->convertQuoteToOrder();
             $orderId = $order->getId();
+            $this->statusHistory($orderId);
             $address = $this->convertQuoteAddToOrderAdd($orderId);
             $item = $this->convertItemCollection($orderId);
             $payment = $this->convertPayment($orderId);
@@ -155,8 +156,30 @@ class Sales_Model_Quote extends Core_Model_Abstract
             $this->addData('shipping_id', $shipping->getId())->save();
         }
     }
+    public function statusHistory($orderId)
+    {
+        date_default_timezone_set('Asia/Kolkata');
+        $submission_date = date("Y-m-d H:i:s");
+        return Mage::getModel('sales/order_history')
+            ->setData($this->getData())
+            ->addData('order_id',"$orderId")
+            ->addData('from_status',"pending")
+            ->addData('to_status',"pending")
+            ->addData('date',$submission_date)
+            ->addData('action_by',"customer")
+            ->removeData('quote_id')
+            ->removeData('tax_percent')
+            ->removeData('grand_total')
+            ->removeData('customer_id')
+            ->removeData('payment_id')
+            ->removeData('shipping_id')
+            ->save();
+
+    }
     public function convertQuoteToOrder()
     {
+        date_default_timezone_set('Asia/Kolkata');
+        $submission_date = date("Y-m-d H:i:s");
         return Mage::getModel('sales/order')
             ->setData($this->getData())
             ->removeData('quote_id')
@@ -164,6 +187,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
             ->removeData('payment_id')
             ->removeData('shipping_id')
             ->addData('status',"pending")
+            ->addData('date',$submission_date)
             ->save();
 
     }

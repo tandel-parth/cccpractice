@@ -46,7 +46,7 @@ class Admin_Controller_Tempconverter_Index extends Core_Controller_Admin_Action
     public function listAction()
     {
         $layout = $this->getLayout();
-        $this->includeCss('lists.css');
+        $this->includeCss('list.css');
         $child = $layout->getChild('content');
         $list = $layout->createBlock('tempconverter/admin_list');
         $child->addChild('list', $list);

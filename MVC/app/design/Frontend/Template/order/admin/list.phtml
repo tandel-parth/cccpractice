@@ -1,38 +1,77 @@
-<div class="container relative">
-    <?php foreach ($this->orderIdd() as $_orderId) { ?>
-        <div class="content">
-            <div class="boxes">Order Id:
-                <?php echo $_orderId->getId() ?>
+<div class="untree_co-section before-footer-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="site-blocks-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="product-thumbnail">Order Id</th>
+                            <th class="product-name">Order Number</th>
+                            <th class="product-price">Date</th>
+                            <th class="product-price">Total Price</th>
+                            <th class="product-quantity">Status</th>
+                            <th class="product-remove">Pending Request</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($this->orderIdd() as $_orderId) {
+                            ?>
+                            <tr>
+                                <td class="product-thumbnail">
+                                    <?php echo $_orderId->getId() ?>
+                                </td>
+                                <td class="product-name">
+                                    <h2 class="h5 text-black">
+                                        <?php echo $_orderId->getOrderNumber() ?>
+                                    </h2>
+                                </td>
+                                <td>
+                                    <?php echo $_orderId->getDate() ?>
+                                </td>
+                                <td>
+                                    <?php echo $_orderId->getGrandTotal() ?>
+                                </td>
+                                <form action="<?php echo $this->getUrl('admin/order_history/save') ?>" method="post">
+                                    <td>
+                                        <div class="input-group mb-3 d-flex align-items-center quantity-container"
+                                            style="gap: 20px ;">
+                                            <input type="text" name="history[order_id]"
+                                                value="<?php echo $_orderId->getId() ?>" hidden>
+                                            <input type="text" name="history[action_by]" value="admin" hidden>
+                                            <select id="to_status" class="form-control" name="history[to_status]"
+                                                style="border-radius: 10px;">
+                                                <option value="" hidden>Select a country</option>
+                                                <?php
+                                                $histopry = ['pending', 'delivered','canceled','canceled Request'];
+                                                foreach ($histopry as $his) {
+                                                    echo '<option value="' . $his . '"' . (($_orderId->getStatus() == $his) ? 'selected' : '') . '>' . $his . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                            <button type="submit" name="submit" class="update"><img
+                                                    src="<?php echo Mage::getImagePath("banner/updated.png"); ?>"
+                                                    alt="Image" class="img-fluid"></button>
+                                        </div>
+
+                                    </td>
+
+                                </form>
+                                <?php $history = $this->getHistory($_orderId->getId())?>
+                                <?php if($history->getToStatus()=='canceled Request'){?>
+                                <td>
+                                    
+                                </td>
+                                <?php }?>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+
+                    </tbody>
+                </table>
             </div>
-            <?php foreach ($this->items($_orderId->getId()) as $_item) { ?>
-                <div class="boxes">
-                    <div class="data">
-                        <div class="product-title">
-                            <?php echo $_item->getProductName() ?>
-                            <div class="product-image">
-                                <img src="<?php echo Mage::getImagePath("/banner/" . $this->product($_item->getProductId())->getImageLink()); ?>"
-                                    alt="Product Image">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="data">
-                        <div class="order-info">
-                            <div class="order-no">Order Number:
-                                <?php echo $_orderId->getOrderNumber() ?>
-                            </div>
-                            <div class="order-qty">Quantity:
-                                <?php echo $_item->getQty() ?>
-                            </div>
-                            <div class="order-price">Price: $
-                                <?php echo $this->product($_item->getProductId())->getPrice(); ?>
-                            </div>
-                            <div class="order-total">Total: $
-                                <?php echo $_orderId->getGrandTotal() ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
         </div>
-    <?php } ?>
+
+    </div>
 </div>

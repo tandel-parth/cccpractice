@@ -134,10 +134,22 @@ th {
     margin: 50px 0;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
-.boxes{
+.box-1{
+    display: flex;
+    padding-bottom: 25px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.box-2{
     display: flex;
     padding-bottom: 25px;
     width: 100%;
+}
+.cancel{
+  width: 4vw;
+  border: 0;
+  background: transparent;
 }
 .data{
     display: flex;
